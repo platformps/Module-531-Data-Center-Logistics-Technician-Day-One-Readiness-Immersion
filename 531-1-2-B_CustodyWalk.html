@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Module 531 v2.1 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GLAB 531.1.2 Set B &mdash; Chain-of-Custody Walkthrough</title>
@@ -69,24 +70,73 @@ legend{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--fa
 svg text{font-family:inherit}
 @media (max-width:640px){ #app{padding:14px 12px 50px} .frow{flex-direction:column} }
 </style>
+<style id="uiLayer">
+/* ===== Module 531 v2.1 · UI layer: wayfinding, themed browser surfaces, readable prompts ===== */
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+::selection{background:#0079C0;color:#fff}
+input,textarea,select{caret-color:var(--acc)}
+*{scrollbar-color:#2c4a63 #0b1620;scrollbar-width:thin}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-track{background:#0b1620}::-webkit-scrollbar-thumb{background:#2c4a63;border-radius:8px;border:2px solid #0b1620}
+:focus-visible{outline:2px solid #8fd0ff;outline-offset:2px;border-radius:4px}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #8fd0ff;outline-offset:1px;border-color:var(--acc)}
+input[type=text],input[type=number],select{min-height:38px}
+textarea{min-height:64px}
+input[type=checkbox],input[type=radio]{width:20px;height:20px;accent-color:#0079C0;margin:2px 8px 2px 0;flex:none}
+.chk{min-height:32px;align-items:center}
+.card h3.h4{margin:0 0 6px;font-size:13px;color:var(--ink);letter-spacing:0;text-transform:none}
+button{min-height:36px;transition:background .15s ease-out,border-color .15s ease-out,transform .12s ease-out,box-shadow .2s ease-out}
+button:active{transform:translateY(1px)}
+button.primary:hover{box-shadow:0 6px 16px -6px rgba(0,121,192,.75)}
+button.primary:disabled{box-shadow:none}
+#lqCard .lqq .lqp{text-transform:none;letter-spacing:0;font-size:14px;font-weight:400;color:#dfeaf3;line-height:1.55}
+#lqCard .lqq .lqp .qn{font-weight:700}
+input.scanin{font-family:"SFMono-Regular",Consolas,monospace;padding-left:34px !important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='%234fb3ef'%3E%3Crect x='1' y='3' width='2' height='12'/%3E%3Crect x='4' y='3' width='1' height='12'/%3E%3Crect x='6' y='3' width='2' height='12'/%3E%3Crect x='9' y='3' width='1' height='12'/%3E%3Crect x='11' y='3' width='3' height='12'/%3E%3Crect x='15' y='3' width='2' height='12'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:10px center;background-size:18px 18px;min-width:220px}
+.scanin:focus,.seqin:focus{background-color:#0f2233;box-shadow:inset 0 0 0 1px var(--acc)}
+.seqin{font-family:"SFMono-Regular",Consolas,monospace;min-width:220px}
+#benchPanel{border-color:#3a6a8f;background:linear-gradient(180deg,#152a3d 0%,#132433 120px)}
+#benchPanel>h2{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+#benchPanel>h2::before{content:"Hands-on";font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:#0b1620;background:var(--acc);border-radius:12px;padding:2px 9px;font-weight:700}
+#benchPanel .card h3.h4{color:var(--acc)}
+::placeholder{color:var(--faint);opacity:1}
+@media (pointer:coarse){button{min-height:44px}button.small{min-height:40px}input[type=text],input[type=number],select{min-height:44px}#pbar .pstep{min-height:44px}}
+.okmark,.badmark,.warnmark{display:inline-flex;align-items:center;gap:5px}
+.okmark::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ok);flex:none}
+.badmark::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--bad);flex:none}
+.warnmark::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--warn);flex:none}
+.sheet{animation:sheetIn .45s cubic-bezier(.16,1,.3,1) both}
+@keyframes sheetIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.sheet{animation:none}html{scroll-behavior:auto}}
+#pbar{position:sticky;top:0;z-index:50;background:rgba(11,22,32,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);margin:0 -20px 16px;padding:8px 20px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px}
+#pbar .plab{font-weight:700;color:var(--ink);margin-right:auto;white-space:nowrap}
+#pbar .plab span{color:var(--faint);font-weight:400;margin-left:8px}
+#pbar .pstep{display:inline-flex;align-items:center;gap:7px;color:var(--dim);text-decoration:none;padding:5px 11px;border:1px solid var(--line);border-radius:20px;transition:border-color .15s ease-out,color .15s ease-out,background .15s ease-out}
+#pbar .pstep:hover{border-color:#3d6485;background:#16293a}
+#pbar .pstep .dot{width:8px;height:8px;border-radius:50%;background:var(--line);flex:none;transition:background .2s ease-out}
+.gatetag{display:inline-block;font-size:10px;letter-spacing:1px;font-weight:700;padding:1px 5px;border-radius:4px;background:rgba(245,166,35,.18);color:#f5a623;border:1px solid rgba(245,166,35,.5);vertical-align:middle}.gatebox{border-color:rgba(245,166,35,.5)}.gatebox ul{margin:6px 0 0 18px;padding:0}.gatebox li{margin:3px 0}#pbar .pstep.done{border-color:rgba(57,201,142,.55);color:var(--ok)}#pbar .pstep.done .dot{background:var(--ok)}
+#pbar .pstep.part{border-color:rgba(232,182,76,.55);color:var(--warn)}#pbar .pstep.part .dot{background:var(--warn)}
+#pbar .pstep b{font-weight:700}
+@media (max-width:640px){.frow>div{flex-basis:auto !important;min-width:0}.scanin,.seqin{min-width:0;width:100%}#pbar{margin:0 -12px 14px;padding:6px 12px;gap:6px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}#pbar::-webkit-scrollbar{display:none}#pbar .plab{margin-right:4px}#pbar .plab span{display:none}#pbar .pstep{padding:4px 9px;white-space:nowrap;flex:none}}
+@media print{#pbar{display:none}}
+</style>
 </head>
 <body>
 <div id="app">
 <header class="top">
 <div class="eyebrow">Module 531: Data Center Logistics Technician Day-One Readiness Immersion &middot; Lesson 531.1</div>
 <h1>GLAB 531.1.2 &mdash; Chain-of-Custody Walkthrough</h1>
-<div class="tagrow"><span class="tag set">Scenario set B</span><span class="tag">~15 min</span><span id="simStatus" role="status" aria-live="polite"></span></div>
+<div class="tagrow"><span class="tag set">Scenario set B</span><span class="tag">~30 min</span><span class="tag">includes bench work</span><span id="simStatus" role="status" aria-live="polite"></span></div>
 </header>
-<section class="brief"><h2>How this tool works</h2><p>This tool is where your whole submission is built. Work the simulator panels below, then answer every numbered question from the handout in the submission panel at the bottom &mdash; the numbering there matches the handout exactly. Your work is saved in this browser as you type. When everything is answered, press <b>Build submission PDF</b> and save the file it prints; that single PDF is what you upload to Canvas.</p><p>The simulator keeps its own record. Press <b>Build submission sheet</b> when the panels are complete &mdash; the sheet it assembles is harvested into your PDF automatically.</p></section>
+<section class="brief"><h2>How this tool works</h2><p>This tool is where your whole submission is built. Work the simulator panels below, then answer every numbered question from the handout in the submission panel at the bottom &mdash; the numbering there matches the handout exactly. Your work is saved in this browser as you type. When everything is answered, press <b>Build submission PDF</b> and save the file it prints; that single PDF is what you upload to Canvas.</p><p>The <b>bench panel</b> near the bottom records the physical part of this lab at your station &mdash; scanner reads, ESD and PPE checks, labels you print, serials you seal. Press <b>Build bench record</b> when that part is done; it goes into the same PDF.</p><p>The simulator keeps its own record. Press <b>Build submission sheet</b> when the panels are complete &mdash; the sheet it assembles is harvested into your PDF automatically.</p></section>
 <main id="sim">
 
 <section class="panel"><h2>The narrative &mdash; event register</h2>
 <p class="hint">Read all events before marking any. Mark each as a transfer or not, and each transfer's documentation as complete or a gap.</p>
-<div class="card"><h4>E1</h4><p style="margin:0 0 8px;font-size:13px;color:var(--dim)">08:50 - A DCT pulls a failed server from the rack and hands it to the DCLT at the DC Hall door. Both sign the equipment release form.</p><div class="frow"><div><label for="tr_E1">Custody transfer?</label><select id="tr_E1"><option value="">&mdash; choose &mdash;</option><option>Transfer</option><option>Not a transfer</option></select></div><div><label for="dc_E1">Documentation</label><select id="dc_E1"><option value="">&mdash; choose &mdash;</option><option>Complete</option><option>Gap</option><option>N/A (not a transfer)</option></select></div></div></div><div class="card"><h4>E2</h4><p style="margin:0 0 8px;font-size:13px;color:var(--dim)">09:10 - The DCLT wheels the unit to the Store House RMA bench and signs it into the RMA intake log with date, time and condition.</p><div class="frow"><div><label for="tr_E2">Custody transfer?</label><select id="tr_E2"><option value="">&mdash; choose &mdash;</option><option>Transfer</option><option>Not a transfer</option></select></div><div><label for="dc_E2">Documentation</label><select id="dc_E2"><option value="">&mdash; choose &mdash;</option><option>Complete</option><option>Gap</option><option>N/A (not a transfer)</option></select></div></div></div><div class="card"><h4>E3</h4><p style="margin:0 0 8px;font-size:13px;color:var(--dim)">09:25 - The DCLT photographs the unit, records the fault description from the ticket, and opens the vendor RMA request.</p><div class="frow"><div><label for="tr_E3">Custody transfer?</label><select id="tr_E3"><option value="">&mdash; choose &mdash;</option><option>Transfer</option><option>Not a transfer</option></select></div><div><label for="dc_E3">Documentation</label><select id="dc_E3"><option value="">&mdash; choose &mdash;</option><option>Complete</option><option>Gap</option><option>N/A (not a transfer)</option></select></div></div></div><div class="card"><h4>E4</h4><p style="margin:0 0 8px;font-size:13px;color:var(--dim)">09:40 - The DCLT removes the unit&#x27;s two drives, seals them in a tamper-evident bag, and writes &#x27;drives removed&#x27; in the log. The bag&#x27;s serial number is not written anywhere.</p><div class="frow"><div><label for="tr_E4">Custody transfer?</label><select id="tr_E4"><option value="">&mdash; choose &mdash;</option><option>Transfer</option><option>Not a transfer</option></select></div><div><label for="dc_E4">Documentation</label><select id="dc_E4"><option value="">&mdash; choose &mdash;</option><option>Complete</option><option>Gap</option><option>N/A (not a transfer)</option></select></div></div></div><div class="card"><h4>E5</h4><p style="margin:0 0 8px;font-size:13px;color:var(--dim)">10:30 - The bagged drives are placed in the locked DBD cage by the same technician, who logs the cage entry with the bag count.</p><div class="frow"><div><label for="tr_E5">Custody transfer?</label><select id="tr_E5"><option value="">&mdash; choose &mdash;</option><option>Transfer</option><option>Not a transfer</option></select></div><div><label for="dc_E5">Documentation</label><select id="dc_E5"><option value="">&mdash; choose &mdash;</option><option>Complete</option><option>Gap</option><option>N/A (not a transfer)</option></select></div></div></div><div class="card"><h4>E6</h4><p style="margin:0 0 8px;font-size:13px;color:var(--dim)">15:20 - The vendor courier collects the palletised chassis. The courier signs the release; the signature line carries a name but the time field is blank.</p><div class="frow"><div><label for="tr_E6">Custody transfer?</label><select id="tr_E6"><option value="">&mdash; choose &mdash;</option><option>Transfer</option><option>Not a transfer</option></select></div><div><label for="dc_E6">Documentation</label><select id="dc_E6"><option value="">&mdash; choose &mdash;</option><option>Complete</option><option>Gap</option><option>N/A (not a transfer)</option></select></div></div></div></section>
-</main>
+<div class="card"><h3 class="h4">E1</h3><p style="margin:0 0 8px;font-size:13px;color:var(--dim)">08:50 - A DCT pulls a failed server from the rack and hands it to the DCLT at the DC Hall door. Both sign the equipment release form.</p><div class="frow"><div><label for="tr_E1">Custody transfer?</label><select id="tr_E1"><option value="">&mdash; choose &mdash;</option><option>Transfer</option><option>Not a transfer</option></select></div><div><label for="dc_E1">Documentation</label><select id="dc_E1"><option value="">&mdash; choose &mdash;</option><option>Complete</option><option>Gap</option><option>N/A (not a transfer)</option></select></div></div></div><div class="card"><h3 class="h4">E2</h3><p style="margin:0 0 8px;font-size:13px;color:var(--dim)">09:10 - The DCLT wheels the unit to the Store House RMA bench and signs it into the RMA intake log with date, time and condition.</p><div class="frow"><div><label for="tr_E2">Custody transfer?</label><select id="tr_E2"><option value="">&mdash; choose &mdash;</option><option>Transfer</option><option>Not a transfer</option></select></div><div><label for="dc_E2">Documentation</label><select id="dc_E2"><option value="">&mdash; choose &mdash;</option><option>Complete</option><option>Gap</option><option>N/A (not a transfer)</option></select></div></div></div><div class="card"><h3 class="h4">E3</h3><p style="margin:0 0 8px;font-size:13px;color:var(--dim)">09:25 - The DCLT photographs the unit, records the fault description from the ticket, and opens the vendor RMA request.</p><div class="frow"><div><label for="tr_E3">Custody transfer?</label><select id="tr_E3"><option value="">&mdash; choose &mdash;</option><option>Transfer</option><option>Not a transfer</option></select></div><div><label for="dc_E3">Documentation</label><select id="dc_E3"><option value="">&mdash; choose &mdash;</option><option>Complete</option><option>Gap</option><option>N/A (not a transfer)</option></select></div></div></div><div class="card"><h3 class="h4">E4</h3><p style="margin:0 0 8px;font-size:13px;color:var(--dim)">09:40 - The DCLT removes the unit&#x27;s two drives, seals them in a tamper-evident bag, and writes &#x27;drives removed&#x27; in the log. The bag&#x27;s serial number is not written anywhere.</p><div class="frow"><div><label for="tr_E4">Custody transfer?</label><select id="tr_E4"><option value="">&mdash; choose &mdash;</option><option>Transfer</option><option>Not a transfer</option></select></div><div><label for="dc_E4">Documentation</label><select id="dc_E4"><option value="">&mdash; choose &mdash;</option><option>Complete</option><option>Gap</option><option>N/A (not a transfer)</option></select></div></div></div><div class="card"><h3 class="h4">E5</h3><p style="margin:0 0 8px;font-size:13px;color:var(--dim)">10:30 - The bagged drives are placed in the locked DBD cage by the same technician, who logs the cage entry with the bag count.</p><div class="frow"><div><label for="tr_E5">Custody transfer?</label><select id="tr_E5"><option value="">&mdash; choose &mdash;</option><option>Transfer</option><option>Not a transfer</option></select></div><div><label for="dc_E5">Documentation</label><select id="dc_E5"><option value="">&mdash; choose &mdash;</option><option>Complete</option><option>Gap</option><option>N/A (not a transfer)</option></select></div></div></div><div class="card"><h3 class="h4">E6</h3><p style="margin:0 0 8px;font-size:13px;color:var(--dim)">15:20 - The vendor courier collects the palletised chassis. The courier signs the release; the signature line carries a name but the time field is blank.</p><div class="frow"><div><label for="tr_E6">Custody transfer?</label><select id="tr_E6"><option value="">&mdash; choose &mdash;</option><option>Transfer</option><option>Not a transfer</option></select></div><div><label for="dc_E6">Documentation</label><select id="dc_E6"><option value="">&mdash; choose &mdash;</option><option>Complete</option><option>Gap</option><option>N/A (not a transfer)</option></select></div></div></div></section>
 <section class="panel" id="sheetWrap"><h2>Simulator record</h2><p class="hint">When the panels above are complete, build the sheet. Rebuild it any time &mdash; it always reflects the current state.</p><button id="btnSheet" class="primary" type="button" onclick="buildSheet()">Build submission sheet</button> <button type="button" onclick="restartSim()">Restart simulator</button><div id="sheetOut" aria-live="polite"></div></section>
+<!-- BENCH:START --><section class="panel" id="benchPanel"><h2>Bench panel &mdash; Part 3: The hand-off drill (at the bench)</h2><p class="hint">Your hands-on work at the station, recorded here. Click into a scan field and scan &mdash; the scanner types the code and presses Enter for you. Green means the tool read what it expected and moves you to the next field; red tells you what to check &mdash; fix it, then scan again. At your station: scrap drives (mock DBDs), anti-static bags, custody logbook, DS2208 scanner.</p><div class="card"><h3 class="h4">Transfer 1</h3><div class="frow"><div><label for="b_tr_1_tag">Drive tag — scan it</label><input type="text" id="b_tr_1_tag" class="scanin" autocomplete="off" spellcheck="false" data-b="{&quot;id&quot;:&quot;tag&quot;,&quot;type&quot;:&quot;scan&quot;,&quot;label&quot;:&quot;Drive tag — scan it&quot;,&quot;expect&quot;:&quot;^DBD-\\d{2}$&quot;,&quot;same&quot;:true}"> <span id="b_tr_1_tag_st" role="status" style="font-size:12px"></span></div><div><label for="b_tr_1_time">Date / time</label><input type="text" id="b_tr_1_time" size="22" placeholder="e.g. 14:32"></div><div><label for="b_tr_1_from">From</label><input type="text" id="b_tr_1_from" size="22" placeholder="your name"></div><div><label for="b_tr_1_to">To</label><input type="text" id="b_tr_1_to" size="22" placeholder="partner&#x27;s name / instructor"></div><div><label for="b_tr_1_cond">Condition</label><select id="b_tr_1_cond"><option value="">&mdash; choose &mdash;</option><option>Sealed bag intact</option><option>Bag open / damaged</option><option>Other (note in the last question)</option></select></div><div><label for="b_tr_1_ini">Both initials (yours and your partner&#x27;s)</label><input type="text" id="b_tr_1_ini" size="22"></div></div></div><div class="card"><h3 class="h4">Transfer 2</h3><div class="frow"><div><label for="b_tr_2_tag">Drive tag — scan it</label><input type="text" id="b_tr_2_tag" class="scanin" autocomplete="off" spellcheck="false" data-b="{&quot;id&quot;:&quot;tag&quot;,&quot;type&quot;:&quot;scan&quot;,&quot;label&quot;:&quot;Drive tag — scan it&quot;,&quot;expect&quot;:&quot;^DBD-\\d{2}$&quot;,&quot;same&quot;:true}"> <span id="b_tr_2_tag_st" role="status" style="font-size:12px"></span></div><div><label for="b_tr_2_time">Date / time</label><input type="text" id="b_tr_2_time" size="22" placeholder="e.g. 14:32"></div><div><label for="b_tr_2_from">From</label><input type="text" id="b_tr_2_from" size="22" placeholder="your name"></div><div><label for="b_tr_2_to">To</label><input type="text" id="b_tr_2_to" size="22" placeholder="partner&#x27;s name / instructor"></div><div><label for="b_tr_2_cond">Condition</label><select id="b_tr_2_cond"><option value="">&mdash; choose &mdash;</option><option>Sealed bag intact</option><option>Bag open / damaged</option><option>Other (note in the last question)</option></select></div><div><label for="b_tr_2_ini">Both initials (yours and your partner&#x27;s)</label><input type="text" id="b_tr_2_ini" size="22"></div></div></div><div class="card"><h3 class="h4">Transfer 3</h3><div class="frow"><div><label for="b_tr_3_tag">Drive tag — scan it</label><input type="text" id="b_tr_3_tag" class="scanin" autocomplete="off" spellcheck="false" data-b="{&quot;id&quot;:&quot;tag&quot;,&quot;type&quot;:&quot;scan&quot;,&quot;label&quot;:&quot;Drive tag — scan it&quot;,&quot;expect&quot;:&quot;^DBD-\\d{2}$&quot;,&quot;same&quot;:true}"> <span id="b_tr_3_tag_st" role="status" style="font-size:12px"></span></div><div><label for="b_tr_3_time">Date / time</label><input type="text" id="b_tr_3_time" size="22" placeholder="e.g. 14:32"></div><div><label for="b_tr_3_from">From</label><input type="text" id="b_tr_3_from" size="22" placeholder="your name"></div><div><label for="b_tr_3_to">To</label><input type="text" id="b_tr_3_to" size="22" placeholder="partner&#x27;s name / instructor"></div><div><label for="b_tr_3_cond">Condition</label><select id="b_tr_3_cond"><option value="">&mdash; choose &mdash;</option><option>Sealed bag intact</option><option>Bag open / damaged</option><option>Other (note in the last question)</option></select></div><div><label for="b_tr_3_ini">Both initials (yours and your partner&#x27;s)</label><input type="text" id="b_tr_3_ini" size="22"></div></div></div><p><button class="primary" type="button" onclick="buildBench()">Build bench record</button> <span id="benchStatus" role="status" style="font-size:12px"></span></p><div id="benchOut" aria-live="polite"></div></section><!-- BENCH:END -->
+</main>
 </div>
-<script id="lqData">var LQ={"lab": "GLAB 531.1.2", "title": "Chain-of-Custody Walkthrough", "handout": "GLAB 531.1.2 - Chain-of-Custody Walkthrough", "file": "531-1-2-B_CustodyWalk.html", "set": "B", "items": [{"s": "Part 1: Marking the chain", "k": "text", "p": "Step 3. For each gap you flagged, write one line: what document or field is missing, and what you would do about it today."}, {"s": "Part 1: Marking the chain", "k": "text", "p": "Step 4. One event in the narrative is commonly mis-marked as a transfer but is not one. Say which event and why it does not change custody."}, {"s": "Part 2: Why it matters", "k": "text", "p": "Step 5. Pick the single worst gap in this narrative - the one you would fix first - and justify the choice in terms of audit, warranty or DBD exposure."}, {"s": "Part 2: Why it matters", "k": "text", "p": "Step 6. Write the one-sentence version you would give the compliance officer: is this chain intact, and if not, where does it break first?"}]};</script>
+<script id="lqData">var LQ={"lab":"GLAB 531.1.2","title":"Chain-of-Custody Walkthrough","handout":"GLAB 531.1.2 - Chain-of-Custody Walkthrough","file":"531-1-2-B_CustodyWalk.html","set":"B","items":[{"s":"Part 1: Marking the chain","k":"text","p":"Step 3. For each gap you flagged, write one line: what document or field is missing, and what you would do about it today."},{"s":"Part 1: Marking the chain","k":"text","p":"Step 4. One event in the narrative is commonly mis-marked as a transfer but is not one. Say which event and why it does not change custody."},{"s":"Part 2: Why it matters","k":"text","p":"Step 5. Pick the single worst gap in this narrative - the one you would fix first - and justify the choice in terms of audit, warranty or DBD exposure."},{"s":"Part 2: Why it matters","k":"text","p":"Step 6. Write the one-sentence version you would give the compliance officer: is this chain intact, and if not, where does it break first?"},{"s":"Part 3: The hand-off drill (at the bench)","k":"text","p":"Step 9. Which field was hardest to capture at the moment of transfer rather than afterwards at the desk — and what would you change about the bench to make it easy?","b":1}]};</script>
 <script>
 function $(id){return document.getElementById(id)}
 function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
@@ -134,6 +184,154 @@ function buildSheet(){
  status(miss?miss+" events unmarked.":"Submission sheet built.",!miss);
 }
 document.addEventListener("DOMContentLoaded",function(){ if(typeof initSim==="function")initSim(); persistAll&&persistAll(); });
+</script>
+<script id="benchScript">var BENCH={"lab":"GLAB 531.1.2","set":"B","part":"Part 3: The hand-off drill (at the bench)"};
+/* ===== Module 531 v2.0 · Bench module ===================================================
+   Records the physical work at the station: scanner input (DS2208 keyboard-wedge), ESD/PPE
+   checkpoints, scale readings, sequences and per-item rows. Validates against the bench
+   register and the expected code formats; prints labels for the ZD621 (Code 128); builds a
+   .sheet record that the submission module harvests into the PDF. No network calls.
+   ========================================================================================= */
+var C128P=["11011001100", "11001101100", "11001100110", "10010011000", "10010001100", "10001001100", "10011001000", "10011000100", "10001100100", "11001001000", "11001000100", "11000100100", "10110011100", "10011011100", "10011001110", "10111001100", "10011101100", "10011100110", "11001110010", "11001011100", "11001001110", "11011100100", "11001110100", "11101101110", "11101001100", "11100101100", "11100100110", "11101100100", "11100110100", "11100110010", "11011011000", "11011000110", "11000110110", "10100011000", "10001011000", "10001000110", "10110001000", "10001101000", "10001100010", "11010001000", "11000101000", "11000100010", "10110111000", "10110001110", "10001101110", "10111011000", "10111000110", "10001110110", "11101110110", "11010001110", "11000101110", "11011101000", "11011100010", "11011101110", "11101011000", "11101000110", "11100010110", "11101101000", "11101100010", "11100011010", "11101111010", "11001000010", "11110001010", "10100110000", "10100001100", "10010110000", "10010000110", "10000101100", "10000100110", "10110010000", "10110000100", "10011010000", "10011000010", "10000110100", "10000110010", "11000010010", "11001010000", "11110111010", "11000010100", "10001111010", "10100111100", "10010111100", "10010011110", "10111100100", "10011110100", "10011110010", "11110100100", "11110010100", "11110010010", "11011011110", "11011110110", "11110110110", "10101111000", "10100011110", "10001011110", "10111101000", "10111100010", "11110101000", "11110100010", "10111011110", "10111101110", "11101011110", "11110101110", "11010000100", "11010010000", "11010011100", "11000111010"];
+var C128B={" ": 0, "!": 1, "\"": 2, "#": 3, "$": 4, "%": 5, "&": 6, "'": 7, "(": 8, ")": 9, "*": 10, "+": 11, ",": 12, "-": 13, ".": 14, "/": 15, "0": 16, "1": 17, "2": 18, "3": 19, "4": 20, "5": 21, "6": 22, "7": 23, "8": 24, "9": 25, ":": 26, ";": 27, "<": 28, "=": 29, ">": 30, "?": 31, "@": 32, "A": 33, "B": 34, "C": 35, "D": 36, "E": 37, "F": 38, "G": 39, "H": 40, "I": 41, "J": 42, "K": 43, "L": 44, "M": 45, "N": 46, "O": 47, "P": 48, "Q": 49, "R": 50, "S": 51, "T": 52, "U": 53, "V": 54, "W": 55, "X": 56, "Y": 57, "Z": 58, "[": 59, "\\": 60, "]": 61, "^": 62, "_": 63, "`": 64, "a": 65, "b": 66, "c": 67, "d": 68, "e": 69, "f": 70, "g": 71, "h": 72, "i": 73, "j": 74, "k": 75, "l": 76, "m": 77, "n": 78, "o": 79, "p": 80, "q": 81, "r": 82, "s": 83, "t": 84, "u": 85, "v": 86, "w": 87, "x": 88, "y": 89, "z": 90, "{": 91, "|": 92, "}": 93, "~": 94, "\u007f": 95, "\u00f3": 96, "\u00f2": 97, "SHIFT": 98, "TO_C": 99, "\u00f4": 100, "TO_A": 101, "\u00f1": 102};
+var KITKEY={"R640":["Rack server (1U)","Team lift"],"PSU":["PSU FRU","ESD precautions"],"FAN":["Fan module FRU","ESD precautions"],"DRV":["Drive carrier (DBD)","DBD custody"],"RAIL":["Rail kit","Standard handling"],"CAGE":["Rack accessory","Standard handling"],"SCAN":["Scanner (tool)","Standard handling"],"CART":["Material-handling equipment","Standard handling"]};
+var BREG=[{"tag":"ATL-00901","item":"R640 server 1","model":"Dell PowerEdge R640","loc":"MIR-1 U10-U11","status":"Deployed","cust":"DC Hall"},{"tag":"ATL-00902","item":"R640 server 2","model":"Dell PowerEdge R640","loc":"MIR-1 U14-U15","status":"Deployed","cust":"DC Hall"},{"tag":"ATL-00903","item":"R640 server 3","model":"Dell PowerEdge R640","loc":"STAGE-1 (cart)","status":"Staged","cust":"Store House"},{"tag":"ATL-00904","item":"R640 server 4","model":"Dell PowerEdge R640","loc":"SH-A-01","status":"In stock","cust":"Store House"},{"tag":"ATL-00911","item":"PSU FRU 1","model":"R640 hot-swap PSU 750 W","loc":"SH-B-01","status":"In stock","cust":"Store House"},{"tag":"ATL-00912","item":"PSU FRU 2","model":"R640 hot-swap PSU 750 W","loc":"SH-B-01","status":"In stock","cust":"Store House"},{"tag":"ATL-00913","item":"PSU FRU 3","model":"R640 hot-swap PSU 750 W","loc":"SH-B-02","status":"In stock","cust":"Store House"},{"tag":"ATL-00914","item":"PSU FRU 4","model":"R640 hot-swap PSU 750 W","loc":"SH-B-02","status":"In stock","cust":"Store House"},{"tag":"ATL-00921","item":"Fan module FRU 1","model":"R640 fan module","loc":"SH-B-03","status":"In stock","cust":"Store House"},{"tag":"ATL-00922","item":"Fan module FRU 2","model":"R640 fan module","loc":"SH-B-03","status":"In stock","cust":"Store House"},{"tag":"ATL-00923","item":"Fan module FRU 3","model":"R640 fan module","loc":"SH-B-04","status":"In stock","cust":"Store House"},{"tag":"ATL-00924","item":"Fan module FRU 4","model":"R640 fan module","loc":"SH-B-04","status":"In stock","cust":"Store House"},{"tag":"ATL-00931","item":"Rail kit 1","model":"R640 sliding rail kit","loc":"SH-C-01","status":"In stock","cust":"Store House"},{"tag":"ATL-00932","item":"Rail kit 2","model":"R640 sliding rail kit","loc":"SH-C-01","status":"In stock","cust":"Store House"},{"tag":"ATL-00941","item":"Platform cart 1","model":"Mobile platform cart","loc":"Dock","status":"In service","cust":"Receiving"},{"tag":"ATL-00942","item":"Platform cart 2","model":"Mobile platform cart","loc":"Store House aisle","status":"In service","cust":"Store House"},{"tag":"ATL-00951","item":"Bench scale","model":"Receiving bench scale","loc":"Receiving","status":"In service","cust":"Receiving"}];
+function bEsc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+function bSet(k,v){SIM["b:"+k]=v;simSave()}
+function bGet(k){return SIM["b:"+k]}
+function bMark(el,ok,msg){var st=$(el.id+"_st");if(!st)return;st.innerHTML=ok===null?'':(ok==="warn"?'<span class="warnmark">FLAG &mdash; '+bEsc(msg)+'</span>':(ok?'<span class="okmark">OK &mdash; '+bEsc(msg)+'</span>':'<span class="badmark">CHECK &mdash; '+bEsc(msg)+'</span>'));bSet("ok:"+el.id,ok)}
+function bRowOf(id){var m=id.match(/^b_([a-z]+)_(\d+)_/);return m?{grp:m[1],row:m[2]}:null}
+function benchValidate(el){
+ var cfg={};try{cfg=JSON.parse(el.getAttribute("data-b")||"{}")}catch(e){}
+ var v=(el.value||"").trim();
+ if(!v){bMark(el,null,"");return}
+ if(cfg.type==="lookup"){
+  var rec=null;for(var i=0;i<BREG.length;i++)if(BREG[i].tag.toUpperCase()===v.toUpperCase())rec=BREG[i];
+  if(rec){el.value=rec.tag;bMark(el,true,rec.item+" · "+rec.model+" · register location "+rec.loc+" · "+rec.status+" · custody "+rec.cust)}
+  else bMark(el,false,"not in the bench register (ATL-009xx tags only)");
+  return;
+ }
+ if(cfg.expect_field){var ref=$("b_"+cfg.expect_field);var want=ref?ref.textContent.trim():"";
+  bMark(el,v.toUpperCase()===want.toUpperCase(),v.toUpperCase()===want.toUpperCase()?"reads "+want:"read "+v+", expected "+want);return}
+ var ok=true,msg="format accepted";
+ if(cfg.expect){try{ok=new RegExp(cfg.expect,"i").test(v)}catch(e){ok=true}if(ok&&/^[A-Z][A-Z0-9-]*$/i.test(v)&&v!==v.toUpperCase()){el.value=v.toUpperCase();v=el.value}if(!ok)msg="'"+v+"' is not the code this field expects — scan the card or tag named in the label, not another one"}
+ if(ok&&cfg.unique){var r=bRowOf(el.id);var sub=el.id.replace(/^b_[a-z]+_\d+_/,"");
+  var all=document.querySelectorAll('input[id^="b_'+(r?r.grp:"")+'_"][id$="_'+sub+'"]');
+  Array.prototype.forEach.call(all,function(o){if(o!==el&&(o.value||"").trim().toUpperCase()===v.toUpperCase()){ok=false;msg="'"+v+"' is already recorded in another row"}})}
+ if(ok&&cfg.kitkey){var rk=bRowOf(el.id);var pre=(v.toUpperCase().split("-")[1]||"");var key=KITKEY[pre];var cs=$("b_"+rk.grp+"_"+rk.row+"_cls"),hs=$("b_"+rk.grp+"_"+rk.row+"_hd");
+  if(key){if(!cs.value||!hs.value){ok="warn";msg="card read — now classify the item and set its handling"}
+   else{msg="card read, classification and handling recorded — checked when you build the bench record"}}}
+ if(ok&&cfg.match_path){var r2=bRowOf(el.id);var p=$("b_"+r2.grp+"_"+r2.row+"_path");var pv=p?p.value:"";
+  if(pv){var want2="BIN-"+pv.toUpperCase();if(v.toUpperCase()!==want2){ok=false;msg="bin "+v+" does not match the path "+pv}else msg="bin matches the path "+pv}}
+ bMark(el,ok,msg);
+}
+function benchNum(el){var cmp=el.getAttribute("data-cmp"),tol=parseFloat(el.getAttribute("data-tol")||"0");var ref=$("b_"+cmp);if(!ref)return;
+ var d=parseFloat(ref.textContent),v=parseFloat(el.value);if(isNaN(v)){bMark(el,null,"");return}
+ var diff=Math.round((v-d)*100)/100;var ok=Math.abs(diff)<=tol;bMark(el,ok?true:"warn",ok?"within "+tol+" kg of the declared weight":"differs from declared by "+diff+" kg — open and count before anything else")}
+/* sequences */
+function bSeqKey(id){return "seq:"+id}
+function benchSeqRender(id){var el=$(id);var cfg={};try{cfg=JSON.parse(el.getAttribute("data-b")||"{}")}catch(e){}
+ var st=bGet(bSeqKey(id))||{list:[],attempts:1,locked:false};
+ var list=$(id+"_list");list.innerHTML=(st.list.length?st.list.map(function(c,i){return (i+1)+". <span class='mono'>"+bEsc(c)+"</span>"}).join(" &nbsp;·&nbsp; "):"<i>nothing scanned yet</i>")+" &nbsp;(attempt "+st.attempts+(st.locked?", locked":"")+")";
+ var s=$(id+"_st");
+ if(cfg.expect_order){var want=cfg.expect_order;var n=st.list.length;var okSoFar=true;for(var i=0;i<n;i++)if(st.list[i]!==want[i])okSoFar=false;
+  if(n===0)s.innerHTML="";else if(!okSoFar)s.innerHTML='<span class="badmark">Out of order at position '+(st.list.findIndex(function(c,i){return c!==want[i]})+1)+' &mdash; restart the sequence.</span>';
+  else if(n===want.length)s.innerHTML='<span class="okmark">Sequence complete and correct.</span>';else s.innerHTML='<span class="warnmark">'+n+' of '+want.length+' in order so far.</span>';
+  bSet("ok:"+id,okSoFar&&n===want.length)}
+ if(cfg.expect_qty!=null){if(st.locked){var v=st.list.length-cfg.expect_qty;s.innerHTML='Counted <b>'+st.list.length+'</b> · register quantity <b>'+cfg.expect_qty+'</b> · variance <b>'+(v>0?"+":"")+v+'</b>'+(v?' <span class="warnmark">&mdash; investigate.</span>':' <span class="okmark">&mdash; agrees.</span>');
+   var lk=$(id+"_lock");if(lk)lk.disabled=true;el.disabled=true;bSet("ok:"+id,true)}else{s.innerHTML='<span class="hint">'+st.list.length+' scanned. Lock the count to reveal the register quantity.</span>';bSet("ok:"+id,false)}}
+}
+function benchSeqAdd(el){var id=el.id;var v=(el.value||"").trim();el.value="";if(!v)return;var st=bGet(bSeqKey(id))||{list:[],attempts:1,locked:false};
+ if(st.locked){$(id+"_st").innerHTML='<span class="badmark">Count is locked &mdash; press Restart count to count again.</span>';return}
+ var cfgA={};try{cfgA=JSON.parse(el.getAttribute("data-b")||"{}")}catch(e){}
+ if(cfgA.expect_order&&st.list.length>=cfgA.expect_order.length){$(id+"_st").innerHTML='<span class="okmark">Sequence already complete &mdash; extra scan ignored.</span>';return}
+ if(st.list.indexOf(v.toUpperCase())>=0){$(id+"_st").innerHTML='<span class="badmark">'+bEsc(v)+' is already in the list &mdash; duplicate scan rejected.</span>';return}
+ st.list.push(v.toUpperCase());bSet(bSeqKey(id),st);benchSeqRender(id)}
+function benchSeqReset(id){var st=bGet(bSeqKey(id))||{list:[],attempts:0,locked:false};st={list:[],attempts:(st.attempts||0)+1,locked:false};bSet(bSeqKey(id),st);var el=$(id);el.disabled=false;var lk=$(id+"_lock");if(lk)lk.disabled=false;benchSeqRender(id)}
+function benchSeqLock(id){var st=bGet(bSeqKey(id))||{list:[],attempts:1,locked:false};if(!st.list.length){$(id+"_st").innerHTML='<span class="badmark">Scan every item before locking.</span>';return}st.locked=true;bSet(bSeqKey(id),st);benchSeqRender(id)}
+/* Code 128 (subset B) label printing for the ZD621 */
+function c128svg(text,h){var vals=[104];for(var i=0;i<text.length;i++){var c=text[i];if(!(c in C128B))c=" ";vals.push(C128B[c])}
+ var sum=vals[0];for(var j=1;j<vals.length;j++)sum+=vals[j]*j;vals.push(sum%103);
+ var bits="";vals.forEach(function(v){bits+=C128P[v]});bits+=C128P[106]+"11";
+ var x=0,w=2,out='<svg xmlns="http://www.w3.org/2000/svg" width="'+(bits.length*w+20)+'" height="'+h+'" viewBox="0 0 '+(bits.length*w+20)+' '+h+'">';
+ for(var k=0;k<bits.length;k++){if(bits[k]==="1")out+='<rect x="'+(10+x)+'" y="0" width="'+w+'" height="'+h+'" fill="#000"/>';x+=w}
+ return out+"</svg>"}
+function benchPrint(fid){var el=$(fid);if(!el)return;var code=el.textContent.trim();var lab=el.parentNode.querySelector("label");var title=lab?lab.textContent:"";
+ var w=window.open("","_blank","width=520,height=320");if(!w){var bs0=$("benchStatus");if(bs0){bs0.textContent="The label window was blocked. Allow pop-ups for this file (the icon at the right end of the address bar), then press Print label again.";bs0.style.color="var(--bad)"}return}
+ w.document.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>'+bEsc(code)+'</title><style>@page{size:2in 1in;margin:0.05in}body{margin:0;font-family:Arial,sans-serif;text-align:center}.lbl{width:1.9in;height:0.9in;display:flex;flex-direction:column;justify-content:center;align-items:center}.t{font-size:7pt;letter-spacing:0.5px}.c{font-size:11pt;font-weight:700;font-family:Consolas,monospace}svg{width:1.8in;height:0.42in}.np{font-size:9pt;margin:8px}@media print{.np{display:none}}</style></head><body><div class="lbl"><div class="t">MODULE 531 · '+bEsc(title.toUpperCase().slice(0,38))+'</div>'+c128svg(code,60)+'<div class="c">'+bEsc(code)+'</div></div><div class="np">Print to the Zebra ZD621 (2 x 1 in label) or any printer. <button onclick="window.print()">Print</button></div></body></html>');
+ w.document.close();bSet("printed:"+fid,(bGet("printed:"+fid)||0)+1)}
+/* record */
+function benchLabel(id){var l=document.querySelector('label[for="'+id+'"]');if(l)return l.textContent;var el=$(id);var p=el&&el.parentNode.querySelector("label");return p?p.textContent:id}
+function benchNext(el){var all=document.querySelectorAll("#benchPanel input.scanin,#benchPanel input.seqin");var seen=false;for(var i=0;i<all.length;i++){if(all[i]===el){seen=true;continue}if(seen&&!all[i].disabled&&!(all[i].value||"").trim()){all[i].focus();return}}}
+function benchTouched(){var t=false;Array.prototype.forEach.call(document.querySelectorAll("#benchPanel input,#benchPanel select"),function(e){if(e.type==="checkbox"?e.checked:(e.value||"").trim())t=true});Object.keys(SIM).forEach(function(k){if(k.indexOf("b:seq:")===0&&SIM[k]&&SIM[k].list&&SIM[k].list.length)t=true});return t}
+function buildBench(){
+ var rows=[],miss=0,gate=0;var items=[];
+ var els=document.querySelectorAll("#benchPanel input[id], #benchPanel select[id], #benchPanel div.mono[id]");
+ Array.prototype.forEach.call(els,function(e){
+  if(e.classList&&e.classList.contains("seqin")){var st=bGet(bSeqKey(e.id))||{list:[],attempts:1,locked:false};var cfg={};try{cfg=JSON.parse(e.getAttribute("data-b")||"{}")}catch(x){}
+   var ok=bGet("ok:"+e.id);var txt=st.list.join(" → ")+" (attempt "+st.attempts+(st.locked?", locked":"")+")";
+   if(cfg.expect_qty!=null&&st.locked)txt+=" · counted "+st.list.length+" vs register "+cfg.expect_qty;
+   if(!st.list.length||ok===false)miss++;
+   items.push([benchLabel(e.id),st.list.length?bEsc(txt):'<span style="color:var(--bad)">— not recorded —</span>',ok===true?'<span class="okmark">OK</span>':(ok===false?'<span class="badmark">check</span>':'')]);return}
+  var v=e.tagName==="DIV"?e.textContent.trim():(e.type==="checkbox"?(e.checked?"yes":""):(e.value||"").trim());
+  var r=bRowOf(e.id);var optional=false;
+  var card=r?e.closest(".card"):null,head=card?card.querySelector("h4,.h4"):null;
+  if(r){optional=!!(card&&card.getAttribute("data-opt"))&&!Array.prototype.some.call(card.querySelectorAll("input[type=text],select"),function(x){return (x.value||"").trim()})}
+  var ok2=bGet("ok:"+e.id);
+  var g=e.getAttribute?e.getAttribute("data-gate"):null;if(g&&v){try{if(JSON.parse(g).indexOf(v)>=0){ok2=false;gate++}}catch(x){}}
+  var want=e.getAttribute?e.getAttribute("data-want"):null;var note="";if(want&&v&&v!==want){ok2=false;note=" — expected "+want}
+  var cfgb={};try{cfgb=JSON.parse(e.getAttribute("data-b")||"{}")}catch(x){}
+  if(cfgb.kitkey&&v&&ok2!==false){var rk=bRowOf(e.id);var key=KITKEY[(v.toUpperCase().split("-")[1]||"")];var cs=$("b_"+rk.grp+"_"+rk.row+"_cls"),hs=$("b_"+rk.grp+"_"+rk.row+"_hd");
+   if(key&&cs&&hs&&cs.value&&hs.value&&(cs.value!==key[0]||hs.value!==key[1])){ok2=false;note=" — "+(cs.value!==key[0]?"classification does not fit this item":"")+(cs.value!==key[0]&&hs.value!==key[1]?"; ":"")+(hs.value!==key[1]?"handling requirement does not fit this item":"")}}
+  if(cfgb.same&&v){var rs=bRowOf(e.id);var sub2=e.id.replace(/^b_[a-z]+_\d+_/,"");var vals=[];Array.prototype.forEach.call(document.querySelectorAll('input[id^="b_'+rs.grp+'_"][id$="_'+sub2+'"]'),function(o){var ov=(o.value||"").trim().toUpperCase();if(ov&&vals.indexOf(ov)<0)vals.push(ov)});if(vals.length>1){ok2=false;note=" — the same tag must be on every row"}}
+  if(!v&&!optional)miss++;if(ok2===false)miss++;
+  var lbl=(head?(head.textContent.replace(/\s*—\s*(only if|leave blank).*$/,"")+" — "):"")+benchLabel(e.id);
+  items.push([bEsc(lbl),v?bEsc(v)+bEsc(note):(optional?'<i>(not used)</i>':'<span style="color:var(--bad)">— not recorded —</span>'),ok2===true?'<span class="okmark">OK</span>':(ok2===false?'<span class="badmark">check</span>':(ok2==="warn"?'<span class="warnmark">flagged</span>':''))]);
+ });
+ var printed=Object.keys(SIM).filter(function(k){return k.indexOf("b:printed:")===0}).map(function(k){return k.replace("b:printed:b_","")+" ×"+SIM[k]}).join(", ");
+ $("benchOut").innerHTML='<section class="sheet"><h3>Bench record &mdash; '+bEsc(BENCH.part)+(BENCH.set?' (Set '+bEsc(BENCH.set)+')':'')+'</h3>'+tbl(["Field","Recorded","Check"],items)+(printed?'<p class="hint">Labels printed: '+bEsc(printed)+'</p>':'')+(gate?'<p class="badmark">A choice above fails the gate: the gate passes only a sealed bag whose serial was recorded at sealing. Fix it at the bench, then build the record again.</p>':'')+(miss?'<p class="badmark">'+miss+' bench item(s) missing or failing their check.</p>':'<p class="okmark">Bench record complete.</p>')+'</section>';
+ var bs=$("benchStatus");if(bs){bs.textContent=miss?miss+" incomplete.":"Bench record built.";bs.style.color=miss?"var(--bad)":"var(--ok)"}
+}
+document.addEventListener("DOMContentLoaded",function(){
+ var p=$("benchPanel");if(!p)return;
+ Array.prototype.forEach.call(p.querySelectorAll("input.scanin"),function(e){e.addEventListener("change",function(){benchValidate(e)});e.addEventListener("keydown",function(ev){if(ev.key==="Enter"){ev.preventDefault();benchValidate(e);if(bGet("ok:"+e.id)!==false)benchNext(e)}});if(e.value)benchValidate(e)});
+ Array.prototype.forEach.call(p.querySelectorAll("input.seqin"),function(e){e.addEventListener("keydown",function(ev){if(ev.key==="Enter"){ev.preventDefault();benchSeqAdd(e)}});e.addEventListener("change",function(){benchSeqAdd(e)});benchSeqRender(e.id)});
+ Array.prototype.forEach.call(p.querySelectorAll("input[type=number]"),function(e){e.addEventListener("input",function(){benchNum(e)});if(e.value)benchNum(e)});
+ Array.prototype.forEach.call(p.querySelectorAll("select"),function(e){e.addEventListener("change",function(){var r=bRowOf(e.id);if(r){var b=$("b_"+r.grp+"_"+r.row+"_bin");if(b&&b.value)benchValidate(b);var c=$("b_"+r.grp+"_"+r.row+"_code");if(c&&c.value)benchValidate(c)}})});
+ var _bs=window.buildSheet;if(typeof _bs==="function")window.buildSheet=function(){_bs();if(benchTouched())buildBench()};
+});
+</script>
+<script id="uiScript">
+/* ===== Module 531 v2.1 · progress bar: where you are, what is left ===== */
+(function(){
+ function $(id){return document.getElementById(id)}
+ function ready(fn){if(document.readyState!=="loading")fn();else document.addEventListener("DOMContentLoaded",fn)}
+ ready(function(){
+  var app=$("app"),head=document.querySelector("header.top");if(!app||!head||$("pbar"))return;
+  var bar=document.createElement("nav");bar.id="pbar";bar.setAttribute("aria-label","Progress");
+  var set=(window.LQ&&LQ.set)?" · Set "+LQ.set:"";
+  bar.innerHTML='<div class="plab">'+(window.LQ?LQ.lab:"")+'<span>'+set+'</span></div>'
+   +(function(){var n=0,h="";if($("sheetWrap")){h+='<a class="pstep" id="ps1" href="#sim"><span class="dot"></span><b>'+(++n)+'</b> Simulator</a><a class="pstep" id="ps2" href="#sheetWrap"><span class="dot"></span><b>'+(++n)+'</b> Simulator record</a>'}
+    if($("benchPanel"))h+='<a class="pstep" id="ps3" href="#benchPanel"><span class="dot"></span><b>'+(++n)+'</b> Bench record</a>';
+    h+='<a class="pstep" id="ps4" href="#lqCard"><span class="dot"></span><b>'+(++n)+'</b> Questions <span id="pqn"></span></a><a class="pstep" id="ps5" href="#lqBuild"><span class="dot"></span><b>'+(++n)+'</b> PDF</a>';return h})();
+  app.insertBefore(bar,head);
+  function mark(el,state){if(!el)return;el.classList.remove("done","part");if(state)el.classList.add(state)}
+  function update(){
+   var so=$("sheetOut"),sim=so&&so.querySelector(".sheet");mark($("ps2"),sim?(so.querySelector(".badmark")?"part":"done"):"");
+   var bo=$("benchOut"),bs=bo&&bo.querySelector(".sheet");mark($("ps3"),bs?(bo.querySelector("p.badmark")?"part":"done"):"");
+   var card=$("lqCard");if(card){var qs=card.querySelectorAll(".lqq"),n=0;
+    Array.prototype.forEach.call(qs,function(q){var ok=false;Array.prototype.forEach.call(q.querySelectorAll("textarea"),function(t){if((t.value||"").trim())ok=true});var im=q.querySelector("img");if(im&&im.getAttribute("src")&&im.style.display!=="none")ok=true;if(ok)n++});
+    var pq=$("pqn");if(pq)pq.textContent=qs.length?n+"/"+qs.length:"";mark($("ps4"),qs.length&&n===qs.length?"done":(n?"part":""));
+    var out=$("lqOut");mark($("ps5"),out&&out.textContent.replace(/\s/g,"")?"done":"")}
+   var simIn=document.querySelectorAll("#sim input, #sim select, #sim textarea"),f=0;Array.prototype.forEach.call(simIn,function(e){if(e.closest&&e.closest("#benchPanel"))return;var touched=e.tagName==="SELECT"?e.selectedIndex>0:(e.type==="checkbox"?e.checked!==e.defaultChecked:((e.value||"").trim()&&e.value!==e.defaultValue));if(touched)f++});
+   mark($("ps1"),sim?(so.querySelector(".badmark")?"part":"done"):(f?"part":""));
+  }
+  var t;function later(){clearTimeout(t);t=setTimeout(update,120)}
+  document.addEventListener("input",later,true);document.addEventListener("change",later,true);document.addEventListener("click",later,true);
+  var mo=new MutationObserver(later);mo.observe(app,{childList:true,subtree:true});
+  update();
+ });
+})();
 </script>
 <!-- ===== Module 531 · Submission module v2.0 =====================================
      Collects every handout question and its response inside this lab tool and
@@ -553,7 +751,7 @@ document.addEventListener("DOMContentLoaded",function(){ if(typeof initSim==="fu
   function collect(){
     var raw=[];
     Array.prototype.forEach.call(document.querySelectorAll(REC_SEL),function(s){
-      if(card.contains(s)) return;
+      if(card.contains(s)||s.closest("#lqPrint")) return;
       if(!s.textContent.replace(/\s/g,"")) return;
       raw.push(s);
     });
@@ -627,26 +825,28 @@ document.addEventListener("DOMContentLoaded",function(){ if(typeof initSim==="fu
      +'<div class="lqsheet">'
      +'<h1>'+esc(LQ.lab)+' — '+esc(LQ.title)+'</h1>'
      +'<div class="lqmeta">Module 531: Data Center Logistics Technician Day-One Readiness Immersion · '+esc(LQ.handout)
-       +' · Set '+esc(setLetter())+' · submission sheet</div>'
+       +(setLetter()==="—"?' · single build':' · Set '+esc(setLetter()))+' · submission sheet</div>'
      +'<h2>Learner</h2>'
      +'<div class="lqrow"><span class="k">Name</span><span class="v">'+(esc(name)||"—")+'</span></div>'
      +'<div class="lqrow"><span class="k">Cohort / section</span><span class="v">'+(esc(coh)||"—")+'</span></div>'
      +'<div class="lqrow"><span class="k">Date</span><span class="v">'+(esc(dt)||"—")+'</span></div>'
-     +'<div class="lqrow"><span class="k">Scenario set</span><span class="v">'+esc(setLetter())+'</span></div>'
+     +'<div class="lqrow"><span class="k">Scenario set</span><span class="v">'+(setLetter()==="—"?"single build":esc(setLetter()))+'</span></div>'
      +'<div class="lqrow"><span class="k">Built</span><span class="v">'
        +esc(new Date().toLocaleString())+'</span></div>';
 
-    var rec=LQ.nosim?null:toolRecord();
-    if(rec){ h+='<h2>Simulator record</h2>'+rec; }
-    else if(!LQ.nosim){
+    var bo=document.getElementById("benchOut");
+    var rec=toolRecord();
+    var simBuilt=!!LQ.nosim||Array.prototype.some.call(document.querySelectorAll(REC_SEL),function(x){return !card.contains(x)&&!(bo&&bo.contains(x))&&!!x.textContent.replace(/\s/g,"")});
+    if(rec){ h+='<h2>'+(LQ.nosim?'Bench record':'Simulator and bench record')+'</h2>'+rec; }
+    if(!simBuilt){
       gaps.push("The simulator record — work through the lab tool above and press its own "
                +"“Build submission sheet” button before you build this PDF");
-    }else{
-      h+='<h2>Assessed on the floor</h2>'
-        +'<div class="lqrow"><span class="k">Practical steps</span><span class="v">'
-        +'Observed and signed off by the instructor against the handout. '
-        +'The instructor signature below records that sign-off.</span></div>';
     }
+    if(bo){
+      if(!bo.querySelector(".sheet")) gaps.push("The bench record — press Build bench record in the bench panel");
+      else{ var bm=bo.querySelector("p.badmark"); if(bm) gaps.push("Bench record: "+bm.textContent.trim().replace(/\.$/,"")); }
+    }
+    var so=document.getElementById("sheetOut"); if(so){ var sm=so.querySelector("p.badmark"); if(sm) gaps.push("Simulator record: "+sm.textContent.trim().replace(/\.$/,"")); }
 
     var curSec=null;
     qs.forEach(function(it,i){
@@ -666,7 +866,7 @@ document.addEventListener("DOMContentLoaded",function(){ if(typeof initSim==="fu
         +'or hand the sheet in as it stands and explain the gaps to your instructor.</div>';
     }else{
       h+='<div class="lqgap ok">'
-        +'<b>Complete.</b> Every question on this sheet carries a response and the simulator record is attached.</div>';
+        +'<b>Complete.</b> Every question on this sheet carries a response and the record of your work is attached.</div>';
     }
 
     h+='<div class="lqsign">Learner signature: ______________________________'
@@ -712,7 +912,7 @@ document.addEventListener("DOMContentLoaded",function(){ if(typeof initSim==="fu
 
     /* The sheet goes inside a one-cell table whose thead repeats on every printed
        page, so pages 2+ still carry the learner name, the lab and the set. */
-    var runHead='<span class="r">'+esc(LQ.lab)+' · Set '+esc(setLetter())+'</span>'
+    var runHead='<span class="r">'+esc(LQ.lab)+(setLetter()==="—"?' · single build':' · Set '+esc(setLetter()))+'</span>'
       +esc(document.getElementById("lqName").value.trim()||"Name not entered")
       +' · '+esc(LQ.title);
     var pr=document.createElement("div"); pr.id="lqPrint";
