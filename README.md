@@ -31,3 +31,7 @@ Learner feedback on the labs: the instructions were vague and the colors made th
 - uses a **light, high-contrast page** (white panels, near-black text, AA-checked colors) with a 12 px type floor and 15 px body text. Where a tool shows a console, chart or diagram, that part keeps its dark "screen" look on purpose.
 
 The change is applied by `build/readability_patch.py` (with the guide text in `guides_531.py`), so it can be re-run over a regenerated set of tools. `build/test_readability.py` renders every tool headless and checks JS errors, the guide card, the type floor and contrast.
+
+### Virtual bench (v2.3, same day)
+
+The stations have no label printer and no physical kit, so every bench panel now opens on a **Virtual bench** card: the cards, tags, labels and serials the bench expects are on screen as Code 128 barcodes (scan them off the display with the field selected, or press the barcode's Scan button), and **Print label** puts the printed tag on the virtual bench instead of opening a print window. `build/bench_walk.py <folder>` walks every bench as a learner and reports which records complete.
