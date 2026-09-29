@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Module 531 v2.1 -->
+<!-- Module 531 v2.2 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GLAB 531.2.1 Set C &mdash; Asset Tagging and Scan Verification</title>
 <style>
-:root{--bg:#0b1620;--panel:#132433;--panel2:#0f1d29;--line:#2c4a63;--line2:#22384c;
---ink:#dfeaf3;--dim:#a8c0d3;--faint:#9db6c9;--acc:#4fb3ef;--ok:#39c98e;--warn:#e8b64c;--bad:#e8604c}
+:root{--bg:#eef2f6;--panel:#ffffff;--panel2:#f4f7fa;--line:#b9c7d4;--line2:#d5dee7;
+--ink:#14212b;--dim:#33475a;--faint:#4a5f72;--acc:#0b63a5;--ok:#15703f;--warn:#8a5a00;--bad:#b42318}
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
@@ -36,9 +36,9 @@ textarea{width:100%;resize:vertical;line-height:1.45}
 select{padding:6px 8px}
 button{font-family:inherit;font-size:13px;cursor:pointer;border-radius:5px;border:1px solid var(--line);
 background:var(--panel);color:var(--ink);padding:8px 14px}
-button:hover{background:#20384f;border-color:#3d6485}
+button:hover{background:#e4ebf2;border-color:#8fa8bf}
 button.primary{background:#0079C0;border-color:#0079C0;color:#fff;font-weight:600}
-button.primary:hover{background:#0a8bd8}
+button.primary:hover{background:#0669a8}
 button.small{font-size:12px;padding:4px 10px}
 button:disabled{opacity:.45;cursor:not-allowed}
 table.grid{width:100%;border-collapse:collapse;font-size:12.5px;margin:8px 0}
@@ -75,10 +75,10 @@ svg text{font-family:inherit}
 html{scroll-behavior:smooth;scroll-padding-top:64px}
 ::selection{background:#0079C0;color:#fff}
 input,textarea,select{caret-color:var(--acc)}
-*{scrollbar-color:#2c4a63 #0b1620;scrollbar-width:thin}
-::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-track{background:#0b1620}::-webkit-scrollbar-thumb{background:#2c4a63;border-radius:8px;border:2px solid #0b1620}
-:focus-visible{outline:2px solid #8fd0ff;outline-offset:2px;border-radius:4px}
-button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #8fd0ff;outline-offset:1px;border-color:var(--acc)}
+*{scrollbar-color:#b9c7d4 #eef2f6;scrollbar-width:thin}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-track{background:#eef2f6}::-webkit-scrollbar-thumb{background:#b9c7d4;border-radius:8px;border:2px solid #eef2f6}
+:focus-visible{outline:2px solid #0b63a5;outline-offset:2px;border-radius:4px}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #0b63a5;outline-offset:1px;border-color:var(--acc)}
 input[type=text],input[type=number],select{min-height:38px}
 textarea{min-height:64px}
 input[type=checkbox],input[type=radio]{width:20px;height:20px;accent-color:#0079C0;margin:2px 8px 2px 0;flex:none}
@@ -88,14 +88,41 @@ button{min-height:36px;transition:background .15s ease-out,border-color .15s eas
 button:active{transform:translateY(1px)}
 button.primary:hover{box-shadow:0 6px 16px -6px rgba(0,121,192,.75)}
 button.primary:disabled{box-shadow:none}
-#lqCard .lqq .lqp{text-transform:none;letter-spacing:0;font-size:14px;font-weight:400;color:#dfeaf3;line-height:1.55}
+#lqCard .lqq .lqp{text-transform:none;letter-spacing:0;font-size:14px;font-weight:400;color:#14212b;line-height:1.55}
 #lqCard .lqq .lqp .qn{font-weight:700}
-input.scanin{font-family:"SFMono-Regular",Consolas,monospace;padding-left:34px !important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='%234fb3ef'%3E%3Crect x='1' y='3' width='2' height='12'/%3E%3Crect x='4' y='3' width='1' height='12'/%3E%3Crect x='6' y='3' width='2' height='12'/%3E%3Crect x='9' y='3' width='1' height='12'/%3E%3Crect x='11' y='3' width='3' height='12'/%3E%3Crect x='15' y='3' width='2' height='12'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:10px center;background-size:18px 18px;min-width:220px}
-.scanin:focus,.seqin:focus{background-color:#0f2233;box-shadow:inset 0 0 0 1px var(--acc)}
-.seqin{font-family:"SFMono-Regular",Consolas,monospace;min-width:220px}
-#benchPanel{border-color:#3a6a8f;background:linear-gradient(180deg,#152a3d 0%,#132433 120px)}
+input.scanin,input.seqin{font-family:"SFMono-Regular",Consolas,monospace;padding-left:34px !important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='%234fb3ef'%3E%3Crect x='1' y='3' width='2' height='12'/%3E%3Crect x='4' y='3' width='1' height='12'/%3E%3Crect x='6' y='3' width='2' height='12'/%3E%3Crect x='9' y='3' width='1' height='12'/%3E%3Crect x='11' y='3' width='3' height='12'/%3E%3Crect x='15' y='3' width='2' height='12'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:10px center;background-size:18px 18px;min-width:220px}
+.scanin:focus,.seqin:focus{background-color:#eef6fc;box-shadow:inset 0 0 0 1px var(--acc)}
+/* v2.2 · bench fields: one grid per row, label / control / status aligned across the row, checkboxes on their own line */
+#benchPanel .frow{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:4px 16px;align-items:end;margin:10px 0}
+#benchPanel .frow>div{min-width:0;flex:none}
+#benchPanel .frow>.f{display:flex;flex-direction:column;justify-content:flex-end}
+#benchPanel .frow>.f>label{margin:0 0 5px}
+#benchPanel .frow>.f>.ctl{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#benchPanel .frow>.f>.ctl>input,#benchPanel .frow>.f>.ctl>select{flex:1 1 160px;width:100%;min-width:0}
+#benchPanel .frow>.f>.ctl>.mono{flex:1 1 auto;padding:8px 0;font-size:14px}
+#benchPanel .frow>.f>.meta{font-size:12px;margin:4px 0 10px;line-height:1.4}
+#benchPanel .frow>.f>.meta:empty{margin:0 0 8px}
+#benchPanel .frow>.f>.meta .hint{margin:0}
+#benchPanel .frow>.f>.meta [role=status]:not(:empty)+.hint{display:none}
+#benchPanel .frow>.chk,#benchPanel .frow>.full{grid-column:1/-1}
+#benchPanel .frow>.chk{margin:2px 0}
+@supports (grid-template-rows:subgrid){#benchPanel .frow>.f{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:subgrid;grid-row:span 3;justify-content:normal;align-content:normal}#benchPanel .frow>.f>label{align-self:end}#benchPanel .frow>.f>.meta{align-self:start}}
+#benchPanel .card{margin:12px 0}
+/* v2.2 · simulator layouts flagged in the review */
+.frow.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px 14px}
+.frow.grid4>div{min-width:0}.frow.grid4 input,.frow.grid4 select{width:100%}
+@media (max-width:640px){.frow.grid4{grid-template-columns:1fr 1fr}}
+.floor{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:10px;background:#eef2f6;border:1px solid var(--line);border-radius:8px}
+.floor>div{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:12px 14px;min-height:110px}
+.floor b{display:block;font-size:22px;color:var(--acc);margin-bottom:4px;line-height:1.1}
+.floor span{font-size:13px;color:var(--faint);line-height:1.4}
+@media (max-width:640px){.floor{grid-template-columns:1fr 1fr;gap:8px;padding:8px}.floor>div{min-height:0;padding:10px 12px}}
+.urow[data-wo]{box-shadow:inset 3px 0 0 var(--warn)}.urow[data-wo] span:last-child{color:var(--warn)}
+@media (pointer:coarse){.urow{min-height:34px;align-items:center;font-size:13px !important;padding:4px 8px !important}}
+#benchPanel .card .frow{margin:4px 0 0}
+#benchPanel{border-color:#7fb0d6;background:linear-gradient(180deg,#eaf3fb 0%,#ffffff 120px)}
 #benchPanel>h2{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-#benchPanel>h2::before{content:"Hands-on";font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:#0b1620;background:var(--acc);border-radius:12px;padding:2px 9px;font-weight:700}
+#benchPanel>h2::before{content:"Hands-on";font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:#eef2f6;background:var(--acc);border-radius:12px;padding:2px 9px;font-weight:700}
 #benchPanel .card h3.h4{color:var(--acc)}
 ::placeholder{color:var(--faint);opacity:1}
 @media (pointer:coarse){button{min-height:44px}button.small{min-height:40px}input[type=text],input[type=number],select{min-height:44px}#pbar .pstep{min-height:44px}}
@@ -106,16 +133,16 @@ input.scanin{font-family:"SFMono-Regular",Consolas,monospace;padding-left:34px !
 .sheet{animation:sheetIn .45s cubic-bezier(.16,1,.3,1) both}
 @keyframes sheetIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.sheet{animation:none}html{scroll-behavior:auto}}
-#pbar{position:sticky;top:0;z-index:50;background:rgba(11,22,32,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);margin:0 -20px 16px;padding:8px 20px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px}
+#pbar{position:sticky;top:0;z-index:50;background:rgba(238,242,246,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);margin:0 -20px 16px;padding:8px 20px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px}
 #pbar .plab{font-weight:700;color:var(--ink);margin-right:auto;white-space:nowrap}
 #pbar .plab span{color:var(--faint);font-weight:400;margin-left:8px}
 #pbar .pstep{display:inline-flex;align-items:center;gap:7px;color:var(--dim);text-decoration:none;padding:5px 11px;border:1px solid var(--line);border-radius:20px;transition:border-color .15s ease-out,color .15s ease-out,background .15s ease-out}
-#pbar .pstep:hover{border-color:#3d6485;background:#16293a}
+#pbar .pstep:hover{border-color:#8fa8bf;background:#e4ebf2}
 #pbar .pstep .dot{width:8px;height:8px;border-radius:50%;background:var(--line);flex:none;transition:background .2s ease-out}
-.gatetag{display:inline-block;font-size:10px;letter-spacing:1px;font-weight:700;padding:1px 5px;border-radius:4px;background:rgba(245,166,35,.18);color:#f5a623;border:1px solid rgba(245,166,35,.5);vertical-align:middle}.gatebox{border-color:rgba(245,166,35,.5)}.gatebox ul{margin:6px 0 0 18px;padding:0}.gatebox li{margin:3px 0}#pbar .pstep.done{border-color:rgba(57,201,142,.55);color:var(--ok)}#pbar .pstep.done .dot{background:var(--ok)}
+.gatetag{display:inline-block;font-size:10px;letter-spacing:1px;font-weight:700;padding:1px 5px;border-radius:4px;background:rgba(245,166,35,.18);color:#8a5a00;border:1px solid rgba(245,166,35,.5);vertical-align:middle}.gatebox{border-color:rgba(245,166,35,.5)}.gatebox ul{margin:6px 0 0 18px;padding:0}.gatebox li{margin:3px 0}#pbar .pstep.done{border-color:rgba(57,201,142,.55);color:var(--ok)}#pbar .pstep.done .dot{background:var(--ok)}
 #pbar .pstep.part{border-color:rgba(232,182,76,.55);color:var(--warn)}#pbar .pstep.part .dot{background:var(--warn)}
 #pbar .pstep b{font-weight:700}
-@media (max-width:640px){.frow>div{flex-basis:auto !important;min-width:0}.scanin,.seqin{min-width:0;width:100%}#pbar{margin:0 -12px 14px;padding:6px 12px;gap:6px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}#pbar::-webkit-scrollbar{display:none}#pbar .plab{margin-right:4px}#pbar .plab span{display:none}#pbar .pstep{padding:4px 9px;white-space:nowrap;flex:none}}
+@media (max-width:640px){.frow>div{flex-basis:auto !important;min-width:0}.scanin,.seqin{min-width:0;width:100%}.frow input[type=text],.frow input[type=number],.frow select{width:100%}#pbar{margin:0 -12px 14px;padding:6px 12px;gap:6px}#pbar .plab{flex:1 1 100%;margin-right:0}#pbar .plab span{display:none}#pbar .pstep{padding:4px 9px;white-space:nowrap}}
 @media print{#pbar{display:none}}
 </style>
 </head>
@@ -126,12 +153,13 @@ input.scanin{font-family:"SFMono-Regular",Consolas,monospace;padding-left:34px !
 <h1>GLAB 531.2.1 &mdash; Asset Tagging and Scan Verification</h1>
 <div class="tagrow"><span class="tag set">Scenario set C</span><span class="tag">~65 min</span><span class="tag">includes bench work</span><span id="simStatus" role="status" aria-live="polite"></span></div>
 </header>
-<section class="brief"><h2>How this tool works</h2><p>This tool is where your whole submission is built. Work the simulator panels below, then answer every numbered question from the handout in the submission panel at the bottom &mdash; the numbering there matches the handout exactly. Your work is saved in this browser as you type. When everything is answered, press <b>Build submission PDF</b> and save the file it prints; that single PDF is what you upload to Canvas.</p><p>The <b>bench panel</b> near the bottom records the physical part of this lab at your station &mdash; scanner reads, ESD and PPE checks, labels you print, serials you seal. Press <b>Build bench record</b> when that part is done; it goes into the same PDF.</p><p>The simulator keeps its own record. Press <b>Build submission sheet</b> when the panels are complete &mdash; the sheet it assembles is harvested into your PDF automatically.</p></section>
+<details class="labguide" id="labGuide" open><summary>How to work this lab<span class="lgsub">9 steps · read this first</span></summary><div class="lgbody"><p class="lggoal"><b>What you hand in:</b> One PDF showing five received assets verified against the manifest, four tagged and scan-checked, one written up as a discrepancy — plus the physical receiving bench record.</p><ol><li><span class="lgact"><b>Panel 1 — the manifest.</b> Read the PO/ASN lines (model, serial, quantity, condition). There is nothing to enter here.</span><span class="lgres">This is what was ordered. Panel 2 is what actually arrived — the two do not fully agree.</span></li><li><span class="lgact"><b>Panel 2 — the bench.</b> For each of the five assets, compare the plate line (model, serial, qty, condition) with the manifest and set <i>Verification</i>. Then type the <i>Serial (from plate)</i> and <i>Model</i>, choose a <i>Bin location</i> and a <i>Placement</i>, and press <b>Scan check</b>.</span><span class="lgres">Scan check compares your entries with the plate and reports MATCH or names the field that differs. Tag (bin + placement) only the assets that verify MATCH.</span></li><li><span class="lgact"><b>Panel 3 — discrepancy record.</b> For the asset that does not verify, choose the <i>Asset #</i>, the <i>Field</i> that differs, type what the ASN <i>expected</i> and what you <i>found</i> on the asset, and choose a <i>Disposition</i>.</span><span class="lgres">One exception record replaces the tag for that asset.</span></li><li><span class="lgact">Press <b>Save simulator record</b> (the numbered button under the last simulator panel).</span><span class="lgres">A <i>Simulator record</i> table appears under the button. A green line means it is complete; a red line names exactly which panel or field is still missing — fix that item, then press Save again.</span></li><li><span class="lgact"><b>Bench panel — Part 4 (virtual bench).</b> Everything at the station is on screen: read the carton sleeve and the bench scale, type the <i>Scale reading</i>, choose whether the contents match the ASN line, and scan the item label's serial barcode from the screen (or press <b>Scan serial into the form</b>).</span><span class="lgres">The scanner reads Code 128 straight off the display — click into the field first, then scan. The Scan buttons do the same thing without a scanner.</span></li><li><span class="lgact">Press <b>Print label</b>. The 2×1 tag appears in the <i>Printed asset tag</i> box; click into <i>Printed tag — scan it back</i> and scan it from the screen (or press <b>Scan the tag back into the form</b>). Then choose the <i>Placement</i> and type your partner's placement-check initials.</span><span class="lgres">The scan-back proves the tag you printed carries the asset ID the tool issued. No printer is needed.</span></li><li><span class="lgact">Press <b>Save bench record</b>.</span><span class="lgres">A <i>Bench record</i> table appears. A red line names anything missing; a green line reads <i>Bench record complete</i>.</span></li><li><span class="lgact">Scroll to <b>Lab submission — questions and responses</b>. Type your name, cohort and date, then answer every question.</span><span class="lgres">Each question carries its handout step number (for example <i>Step 3</i>). The progress bar at the top counts answered questions (for example <i>Questions 5/8</i>) — it must reach the full count. Where a question asks for an image, use <b>Choose File</b> to attach a photo or screenshot.</span></li><li><span class="lgact">Press <b>Build submission PDF</b>. In the print dialog choose <b>Save as PDF</b> and name the file <i>Lastname_Firstname_531.x.y</i> (the tool suggests it).</span><span class="lgres">If anything is still missing, the tool lists the gaps instead of printing — fix them and press again. Upload the one PDF to the matching Canvas assignment. That single file is your submission.</span></li></ol><div class="lgdone"><b>You are finished when:</b><ul><li>The Simulator record and the Bench record both show a green <i>complete</i> line.</li><li>The progress bar shows every question answered (for example <i>Questions 8/8</i>).</li><li>You have saved the PDF and uploaded it to Canvas.</li></ul></div><div class="lgtips"><b>Good to know</b><ul><li>Your typed answers are saved in this browser as you type, so a refresh does not lose them.</li><li>Use <b>Preview without printing</b> to check the PDF before you build it.</li><li>Stuck for more than two minutes? Ask your instructor — do not guess at a scan field.</li></ul></div></div></details>
+<section class="brief"><h2>How this tool works</h2><p>This tool is where your whole submission is built. Work the simulator panels below, then answer every question from the handout in the submission panel at the bottom &mdash; each one carries its handout step number. Your work is saved in this browser as you type. When everything is answered, press <b>Build submission PDF</b> and save the file it prints; that single PDF is what you upload to Canvas.</p><p>The <b>bench panel</b> near the bottom records the physical part of this lab at your station &mdash; scanner reads, the scale reading, the label you print, and initials and notes. Press <b>Save bench record</b> when that part is done; it goes into the same PDF.</p><p>The simulator keeps its own record. Press <b>Save simulator record</b> when the panels are complete &mdash; the record it assembles is harvested into your PDF automatically.</p></section>
 <main id="sim">
 
 <section class="panel"><h2>Panel 1 &mdash; the manifest</h2>
 <div class="meta" style="font-size:12px;color:var(--faint);margin-bottom:6px">PO <span class="mono">PO-88226</span> &middot; ASN <span class="mono">ASN-77412-C</span></div>
-<table class="grid"><thead><tr><th>Line</th><th>Model</th><th>Serial (ASN)</th><th>Qty</th><th>Condition</th></tr></thead><tbody><tr><td>1</td><td>Dell PowerEdge R640</td><td class="mono">R640-ATL-58230</td><td>1</td><td>New</td></tr><tr><td>2</td><td>Cisco Catalyst 3750</td><td class="mono">CAT-3750-9925</td><td>1</td><td>New</td></tr><tr><td>3</td><td>Rack UPS 1500VA</td><td class="mono">UPS-15-20977</td><td>1</td><td>New</td></tr><tr><td>4</td><td>24-port patch panel</td><td class="mono">PP-24-70340</td><td>1</td><td>New</td></tr><tr><td>5</td><td>SFP+ transceiver kit (12)</td><td class="mono">SFP-KIT-30130</td><td>1</td><td>New</td></tr></tbody></table>
+<table class="grid"><thead><tr><th>Line</th><th>Model</th><th>Serial (ASN)</th><th>Qty</th><th>Condition</th></tr></thead><tbody><tr><td>1</td><td>Dell PowerEdge R640</td><td class="mono">R640-ATL-58230</td><td>1</td><td>New</td></tr><tr><td>2</td><td>Cisco Catalyst 2960G</td><td class="mono">CAT-2960G-5508</td><td>1</td><td>New</td></tr><tr><td>3</td><td>Rack UPS 1500VA</td><td class="mono">UPS-15-20977</td><td>1</td><td>New</td></tr><tr><td>4</td><td>24-port patch panel</td><td class="mono">PP-24-70340</td><td>1</td><td>New</td></tr><tr><td>5</td><td>SFP+ transceiver kit (12)</td><td class="mono">SFP-KIT-30130</td><td>1</td><td>New</td></tr></tbody></table>
 </section>
 <section class="panel"><h2>Panel 2 &mdash; the bench: verify, tag, scan</h2>
 <p class="hint">Five assets as physically received. Verify each against the manifest first; tag only what verifies MATCH. The scan check compares your tag against the plate.</p><div class="card"><h3 class="h4">Asset 1 &mdash; as received</h3><div class="meta">Plate: Dell PowerEdge R640 &middot; S/N <span class="mono">R640-ATL-58230</span> &middot; qty 1 &middot; New, sealed</div><div class="frow"><div><label for="vf_1">Verification</label><select id="vf_1"><option value="">&mdash; choose &mdash;</option><option>MATCH</option><option>DISCREPANCY</option></select></div><div><label>Asset ID (issued)</label><div class="mono" style="padding:8px 0">ATL-00761</div></div><div><label for="ts_1">Serial (from plate)</label><input type="text" id="ts_1" size="18"></div><div><label for="tm_1">Model</label><input type="text" id="tm_1" size="22"></div><div><label for="tb_1">Bin location</label><select id="tb_1"><option value="">&mdash; bin &mdash;</option><option>SH-A-18</option><option>SH-B-10</option><option>SH-B-11</option><option>SH-C-06</option><option>SH-C-07</option></select></div><div><label for="tp_1">Placement</label><select id="tp_1"><option value="">&mdash; choose &mdash;</option><option>Upper-left of the rack-visible face, flat surface</option><option>Across the ventilation grille (largest flat area)</option><option>On the removable bezel</option><option>Wrapped over the chassis seam</option></select></div></div><button class="small" type="button" onclick="scan(1)">Scan check</button> <span id="sc_1" role="status" style="font-size:12px"></span></div><div class="card"><h3 class="h4">Asset 2 &mdash; as received</h3><div class="meta">Plate: Cisco Catalyst 2960G &middot; S/N <span class="mono">CAT-2960G-5502</span> &middot; qty 1 &middot; New, sealed</div><div class="frow"><div><label for="vf_2">Verification</label><select id="vf_2"><option value="">&mdash; choose &mdash;</option><option>MATCH</option><option>DISCREPANCY</option></select></div><div><label>Asset ID (issued)</label><div class="mono" style="padding:8px 0">ATL-00762</div></div><div><label for="ts_2">Serial (from plate)</label><input type="text" id="ts_2" size="18"></div><div><label for="tm_2">Model</label><input type="text" id="tm_2" size="22"></div><div><label for="tb_2">Bin location</label><select id="tb_2"><option value="">&mdash; bin &mdash;</option><option>SH-A-18</option><option>SH-B-10</option><option>SH-B-11</option><option>SH-C-06</option><option>SH-C-07</option></select></div><div><label for="tp_2">Placement</label><select id="tp_2"><option value="">&mdash; choose &mdash;</option><option>Upper-left of the rack-visible face, flat surface</option><option>Across the ventilation grille (largest flat area)</option><option>On the removable bezel</option><option>Wrapped over the chassis seam</option></select></div></div><button class="small" type="button" onclick="scan(2)">Scan check</button> <span id="sc_2" role="status" style="font-size:12px"></span></div><div class="card"><h3 class="h4">Asset 3 &mdash; as received</h3><div class="meta">Plate: Rack UPS 1500VA &middot; S/N <span class="mono">UPS-15-20977</span> &middot; qty 1 &middot; New, sealed</div><div class="frow"><div><label for="vf_3">Verification</label><select id="vf_3"><option value="">&mdash; choose &mdash;</option><option>MATCH</option><option>DISCREPANCY</option></select></div><div><label>Asset ID (issued)</label><div class="mono" style="padding:8px 0">ATL-00763</div></div><div><label for="ts_3">Serial (from plate)</label><input type="text" id="ts_3" size="18"></div><div><label for="tm_3">Model</label><input type="text" id="tm_3" size="22"></div><div><label for="tb_3">Bin location</label><select id="tb_3"><option value="">&mdash; bin &mdash;</option><option>SH-A-18</option><option>SH-B-10</option><option>SH-B-11</option><option>SH-C-06</option><option>SH-C-07</option></select></div><div><label for="tp_3">Placement</label><select id="tp_3"><option value="">&mdash; choose &mdash;</option><option>Upper-left of the rack-visible face, flat surface</option><option>Across the ventilation grille (largest flat area)</option><option>On the removable bezel</option><option>Wrapped over the chassis seam</option></select></div></div><button class="small" type="button" onclick="scan(3)">Scan check</button> <span id="sc_3" role="status" style="font-size:12px"></span></div><div class="card"><h3 class="h4">Asset 4 &mdash; as received</h3><div class="meta">Plate: 24-port patch panel &middot; S/N <span class="mono">PP-24-70340</span> &middot; qty 1 &middot; New, sealed</div><div class="frow"><div><label for="vf_4">Verification</label><select id="vf_4"><option value="">&mdash; choose &mdash;</option><option>MATCH</option><option>DISCREPANCY</option></select></div><div><label>Asset ID (issued)</label><div class="mono" style="padding:8px 0">ATL-00764</div></div><div><label for="ts_4">Serial (from plate)</label><input type="text" id="ts_4" size="18"></div><div><label for="tm_4">Model</label><input type="text" id="tm_4" size="22"></div><div><label for="tb_4">Bin location</label><select id="tb_4"><option value="">&mdash; bin &mdash;</option><option>SH-A-18</option><option>SH-B-10</option><option>SH-B-11</option><option>SH-C-06</option><option>SH-C-07</option></select></div><div><label for="tp_4">Placement</label><select id="tp_4"><option value="">&mdash; choose &mdash;</option><option>Upper-left of the rack-visible face, flat surface</option><option>Across the ventilation grille (largest flat area)</option><option>On the removable bezel</option><option>Wrapped over the chassis seam</option></select></div></div><button class="small" type="button" onclick="scan(4)">Scan check</button> <span id="sc_4" role="status" style="font-size:12px"></span></div><div class="card"><h3 class="h4">Asset 5 &mdash; as received</h3><div class="meta">Plate: SFP+ transceiver kit (12) &middot; S/N <span class="mono">SFP-KIT-30130</span> &middot; qty 1 &middot; New, sealed</div><div class="frow"><div><label for="vf_5">Verification</label><select id="vf_5"><option value="">&mdash; choose &mdash;</option><option>MATCH</option><option>DISCREPANCY</option></select></div><div><label>Asset ID (issued)</label><div class="mono" style="padding:8px 0">ATL-00765</div></div><div><label for="ts_5">Serial (from plate)</label><input type="text" id="ts_5" size="18"></div><div><label for="tm_5">Model</label><input type="text" id="tm_5" size="22"></div><div><label for="tb_5">Bin location</label><select id="tb_5"><option value="">&mdash; bin &mdash;</option><option>SH-A-18</option><option>SH-B-10</option><option>SH-B-11</option><option>SH-C-06</option><option>SH-C-07</option></select></div><div><label for="tp_5">Placement</label><select id="tp_5"><option value="">&mdash; choose &mdash;</option><option>Upper-left of the rack-visible face, flat surface</option><option>Across the ventilation grille (largest flat area)</option><option>On the removable bezel</option><option>Wrapped over the chassis seam</option></select></div></div><button class="small" type="button" onclick="scan(5)">Scan check</button> <span id="sc_5" role="status" style="font-size:12px"></span></div></section>
@@ -144,8 +172,15 @@ input.scanin{font-family:"SFMono-Regular",Consolas,monospace;padding-left:34px !
 <div><label for="dx_found">Found (on asset)</label><input type="text" id="dx_found" size="24"></div>
 <div><label for="dx_disp">Disposition</label><select id="dx_disp"><option value="">&mdash;</option><option>Quarantine shelf + notify</option><option>Return to carrier</option><option>Tag anyway</option></select></div>
 </div></section>
-<section class="panel" id="sheetWrap"><h2>Simulator record</h2><p class="hint">When the panels above are complete, build the sheet. Rebuild it any time &mdash; it always reflects the current state.</p><button id="btnSheet" class="primary" type="button" onclick="buildSheet()">Build submission sheet</button> <button type="button" onclick="restartSim()">Restart simulator</button><div id="sheetOut" aria-live="polite"></div></section>
-<!-- BENCH:START --><section class="panel" id="benchPanel"><h2>Bench panel &mdash; Part 4: The physical receiving bench (at the bench)</h2><p class="hint">Your hands-on work at the station, recorded here. Click into a scan field and scan &mdash; the scanner types the code and presses Enter for you. Green means the tool read what it expected and moves you to the next field; red tells you what to check &mdash; fix it, then scan again. At your station: receiving props (pallet, bin, scale), packaging kit, ZD621 label printer, DS2208 scanner, ESD mat + wrist strap, R640 FRU set.</p><div class="frow"><div><label>ASN declared weight (kg)</label><div class="mono" id="b_decl" style="padding:8px 0">2.4</div></div><div><label for="b_kg">Scale reading (kg)</label><input type="number" id="b_kg" step="0.01" min="0" data-cmp="decl" data-tol="0.2"> <span id="b_kg_st" role="status" style="font-size:12px"></span></div><div><label for="b_vf">Contents vs ASN line</label><select id="b_vf"><option value="">&mdash; choose &mdash;</option><option>MATCH — model, serial, quantity, condition</option><option>DISCREPANCY — quantity short</option><option>DISCREPANCY — wrong item</option><option>DISCREPANCY — damaged</option></select></div><div><label for="b_ser">Serial from the item&#x27;s own label</label><input type="text" id="b_ser" size="22"></div><div><label>Asset ID issued for the physical item</label><div class="mono" id="b_tagid" style="padding:8px 0">ATL-00792</div><button class="small" type="button" onclick="benchPrint('b_tagid')">Print label</button></div><div><label for="b_tagscan">Printed tag — scan it back</label><input type="text" id="b_tagscan" class="scanin" autocomplete="off" spellcheck="false" data-b="{&quot;id&quot;:&quot;tagscan&quot;,&quot;type&quot;:&quot;scan&quot;,&quot;label&quot;:&quot;Printed tag — scan it back&quot;,&quot;expect_field&quot;:&quot;tagid&quot;}"> <span id="b_tagscan_st" role="status" style="font-size:12px"></span></div><div><label for="b_place">Placement</label><select id="b_place"><option value="">&mdash; choose &mdash;</option><option>Upper-left of the rack-visible face, flat surface</option><option>Across the ventilation grille</option><option>On the removable panel / handle</option><option>Over the seam</option></select></div><div><label for="b_pini">Partner placement-check initials</label><input type="text" id="b_pini" size="22"></div></div><p><button class="primary" type="button" onclick="buildBench()">Build bench record</button> <span id="benchStatus" role="status" style="font-size:12px"></span></p><div id="benchOut" aria-live="polite"></div></section><!-- BENCH:END -->
+<section class="panel" id="sheetWrap"><h2>Simulator record</h2><p class="hint">When the panels above are complete, save the record. Save again any time &mdash; it always reflects the current state.</p><button id="btnSheet" class="primary" type="button" onclick="buildSheet()">Save simulator record</button> <button type="button" onclick="restartSim()">Restart simulator</button><div id="sheetOut" aria-live="polite"></div></section>
+<!-- BENCH:START --><section class="panel" id="benchPanel"><h2>Bench panel &mdash; Part 4: The physical receiving bench (virtual bench)</h2><p class="hint">Your hands-on work at the station, recorded here. There is no printer and no physical unit at this station: every prop is on the virtual bench below, and every code on it can be scanned from the screen or entered with its Scan button. Green means the tool read what it expected; red tells you what to check.</p><!-- vbench --><div class="card" id="vbench"><h4>Virtual receiving bench &mdash; scan the barcodes below from the screen, or press <i>Scan</i></h4>
+<p class="hint">Nothing at this station is physical: the carton, the scale, the item label and the printed tag are all here. Point the scanner at a barcode with its field selected, or press the Scan button next to it.</p>
+<div class="vbrow">
+ <div class="vbprop"><b>Carton &mdash; ASN sleeve</b><div class="mono">PO-88214 &middot; ASN-ASN-77401-A &middot; line 1</div><div>Dell PowerEdge R640 &middot; qty 1 &middot; New</div><div>Declared weight <span class="mono">2.4 kg</span></div></div>
+ <div class="vbprop"><b>Bench scale</b><div class="vbscale" id="vb_scale">2.45<span> kg</span></div><div class="hint">Type this reading into <i>Scale reading</i></div></div>
+ <div class="vbprop wide"><b>Item label &mdash; on the unit</b><div>Dell PowerEdge R640</div><div class="mono">S/N R640-ATL-58201</div><div class="vbcode" id="vb_ser"></div><button class="small" type="button" onclick="vbScan('b_ser','R640-ATL-58201')">Scan serial into the form</button></div>
+ <div class="vbprop wide"><b>Printed asset tag</b><div id="vb_label" class="hint">Nothing printed yet &mdash; press <i>Print label</i> below and the tag appears here.</div></div>
+</div></div><!-- /vbench --><div class="frow"><div class="f"><label>ASN declared weight (kg)</label><div class="ctl"><div class="mono" id="b_decl">2.4</div></div><div class="meta"><div class="hint">For the carton at your receiving station (its PO/ASN is in the carton sleeve)</div></div></div><div class="f"><label for="b_kg">Scale reading (kg)</label><div class="ctl"><input type="number" id="b_kg" step="0.01" min="0" data-cmp="decl" data-tol="0.2"></div><div class="meta"><span id="b_kg_st" role="status"></span><div class="hint">Flagged when it differs from the declared weight by more than 0.2 kg</div></div></div><div class="f"><label for="b_vf">Contents vs ASN line</label><div class="ctl"><select id="b_vf"><option value="">&mdash; choose &mdash;</option><option>MATCH — model, serial, quantity, condition</option><option>DISCREPANCY — quantity short</option><option>DISCREPANCY — wrong item</option><option>DISCREPANCY — damaged</option></select></div><div class="meta"></div></div><div class="f"><label for="b_ser">Serial from the item&#x27;s own label</label><div class="ctl"><input type="text" id="b_ser"></div><div class="meta"></div></div><div class="f"><label>Asset ID issued for the physical item</label><div class="ctl"><div class="mono" id="b_tagid">ATL-00792</div><button class="small" type="button" onclick="benchPrint('b_tagid')">Print label</button></div><div class="meta"></div></div><div class="f"><label for="b_tagscan">Printed tag — scan it back</label><div class="ctl"><input type="text" id="b_tagscan" class="scanin" autocomplete="off" spellcheck="false" placeholder="click here, then scan" data-b="{&quot;id&quot;:&quot;tagscan&quot;,&quot;type&quot;:&quot;scan&quot;,&quot;label&quot;:&quot;Printed tag — scan it back&quot;,&quot;expect_field&quot;:&quot;tagid&quot;}"></div><div class="meta"><span id="b_tagscan_st" role="status"></span></div></div><div class="f"><label for="b_place">Placement</label><div class="ctl"><select id="b_place"><option value="">&mdash; choose &mdash;</option><option>Upper-left of the rack-visible face, flat surface</option><option>Across the ventilation grille (largest flat area)</option><option>On the removable bezel</option><option>Wrapped over the chassis seam</option></select></div><div class="meta"></div></div><div class="f"><label for="b_pini">Partner placement-check initials</label><div class="ctl"><input type="text" id="b_pini"></div><div class="meta"></div></div></div><p><button class="primary" type="button" onclick="buildBench()">Save bench record</button> <span id="benchStatus" role="status" style="font-size:12px"></span></p><div id="benchOut" aria-live="polite"></div></section><!-- BENCH:END -->
 </main>
 </div>
 <script id="lqData">var LQ={"lab":"GLAB 531.2.1","title":"Asset Tagging and Scan Verification","handout":"GLAB 531.2.1 - Asset Tagging and Scan Verification","file":"531-2-1-C_AssetTag.html","set":"C","items":[{"s":"Part 1: Verify before you touch a tag","k":"text","p":"Step 3. Describe the discrepancy you found: which asset, which field, what the ASN says, what the asset says. Quote both values exactly."},{"s":"Part 2: Tag the clean assets","k":"text","p":"Step 6. Three of the four placement options for each asset are wrong in ways the standard names explicitly. For any one asset, pick one of the three non-standard options you rejected and quote the line of the standard that rules it out."},{"s":"Part 3: Disposition the discrepancy","k":"text","p":"Step 8. Justify your disposition in two sentences: why this path, and who needs to know before end of shift?"},{"s":"Part 3: Disposition the discrepancy","k":"text","p":"Step 9. What would have happened, concretely, if you had tagged the discrepant asset from the manifest data? Name the first downstream process that would have broken and how it would have surfaced."},{"s":"Part 4: The physical receiving bench (at the bench)","k":"image","p":"Step 13. Your partner checks placement against the standard and initials the panel. Photograph the placed tag with the item's own label visible.","b":1},{"s":"Part 4: The physical receiving bench (at the bench)","k":"text","p":"Step 14. State the scale reading, the declared weight, and what you did about any difference — and say what a weight difference tells receiving that a carton count cannot.","b":1}]};</script>
@@ -291,12 +326,12 @@ function c128svg(text,h){var vals=[104];for(var i=0;i<text.length;i++){var c=tex
  var x=0,w=2,out='<svg xmlns="http://www.w3.org/2000/svg" width="'+(bits.length*w+20)+'" height="'+h+'" viewBox="0 0 '+(bits.length*w+20)+' '+h+'">';
  for(var k=0;k<bits.length;k++){if(bits[k]==="1")out+='<rect x="'+(10+x)+'" y="0" width="'+w+'" height="'+h+'" fill="#000"/>';x+=w}
  return out+"</svg>"}
-function benchPrint(fid){var el=$(fid);if(!el)return;var code=el.textContent.trim();var lab=el.parentNode.querySelector("label");var title=lab?lab.textContent:"";
+function benchPrint(fid){var el=$(fid);if(!el)return;var code=el.textContent.trim();var fw=el.closest(".f"),lab=fw?fw.querySelector("label"):null;var title=lab?lab.textContent:"";
  var w=window.open("","_blank","width=520,height=320");if(!w){var bs0=$("benchStatus");if(bs0){bs0.textContent="The label window was blocked. Allow pop-ups for this file (the icon at the right end of the address bar), then press Print label again.";bs0.style.color="var(--bad)"}return}
  w.document.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>'+bEsc(code)+'</title><style>@page{size:2in 1in;margin:0.05in}body{margin:0;font-family:Arial,sans-serif;text-align:center}.lbl{width:1.9in;height:0.9in;display:flex;flex-direction:column;justify-content:center;align-items:center}.t{font-size:7pt;letter-spacing:0.5px}.c{font-size:11pt;font-weight:700;font-family:Consolas,monospace}svg{width:1.8in;height:0.42in}.np{font-size:9pt;margin:8px}@media print{.np{display:none}}</style></head><body><div class="lbl"><div class="t">MODULE 531 · '+bEsc(title.toUpperCase().slice(0,38))+'</div>'+c128svg(code,60)+'<div class="c">'+bEsc(code)+'</div></div><div class="np">Print to the Zebra ZD621 (2 x 1 in label) or any printer. <button onclick="window.print()">Print</button></div></body></html>');
  w.document.close();bSet("printed:"+fid,(bGet("printed:"+fid)||0)+1)}
 /* record */
-function benchLabel(id){var l=document.querySelector('label[for="'+id+'"]');if(l)return l.textContent;var el=$(id);var p=el&&el.parentNode.querySelector("label");return p?p.textContent:id}
+function benchLabel(id){var l=document.querySelector('label[for="'+id+'"]');if(l)return l.textContent;var el=$(id),fw=el&&el.closest(".f");var p=fw&&fw.querySelector("label");return p?p.textContent:id}
 function benchNext(el){var all=document.querySelectorAll("#benchPanel input.scanin,#benchPanel input.seqin");var seen=false;for(var i=0;i<all.length;i++){if(all[i]===el){seen=true;continue}if(seen&&!all[i].disabled&&!(all[i].value||"").trim()){all[i].focus();return}}}
 function benchTouched(){var t=false;Array.prototype.forEach.call(document.querySelectorAll("#benchPanel input,#benchPanel select"),function(e){if(e.type==="checkbox"?e.checked:(e.value||"").trim())t=true});Object.keys(SIM).forEach(function(k){if(k.indexOf("b:seq:")===0&&SIM[k]&&SIM[k].list&&SIM[k].list.length)t=true});return t}
 function buildBench(){
@@ -351,7 +386,9 @@ document.addEventListener("DOMContentLoaded",function(){
     h+='<a class="pstep" id="ps4" href="#lqCard"><span class="dot"></span><b>'+(++n)+'</b> Questions <span id="pqn"></span></a><a class="pstep" id="ps5" href="#lqBuild"><span class="dot"></span><b>'+(++n)+'</b> PDF</a>';return h})();
   app.insertBefore(bar,head);
   function mark(el,state){if(!el)return;el.classList.remove("done","part");if(state)el.classList.add(state)}
+  function num(pill,btn){if(!pill||!btn)return;var n=pill.querySelector("b").textContent;if(btn.getAttribute("data-num")!==n){btn.setAttribute("data-num",n);btn.textContent=n+" \u00b7 "+btn.textContent.replace(/^\d+ \u00b7 /,"")}}
   function update(){
+   num($("ps2"),$("btnSheet"));var bp=$("benchPanel");num($("ps3"),bp&&bp.querySelector("button.primary"));num($("ps5"),$("lqBuild"));
    var so=$("sheetOut"),sim=so&&so.querySelector(".sheet");mark($("ps2"),sim?(so.querySelector(".badmark")?"part":"done"):"");
    var bo=$("benchOut"),bs=bo&&bo.querySelector(".sheet");mark($("ps3"),bs?(bo.querySelector("p.badmark")?"part":"done"):"");
    var card=$("lqCard");if(card){var qs=card.querySelectorAll(".lqq"),n=0;
@@ -368,6 +405,13 @@ document.addEventListener("DOMContentLoaded",function(){
  });
 })();
 </script>
+<script id="vbenchScript">
+function vbScan(id,code){var el=$(id);if(!el)return;el.value=code;el.dispatchEvent(new Event("input",{bubbles:true}));el.dispatchEvent(new Event("change",{bubbles:true}));if(typeof benchValidate==="function"&&el.classList.contains("scanin")){benchValidate(el);if(bGet("ok:"+el.id)!==false)benchNext(el)}else el.focus()}
+function vbRenderLabel(){var box=$("vb_label"),code=$("b_tagid");if(!box||!code)return;var c=code.textContent.trim();
+ box.className="";box.innerHTML='<div class="vbtag"><div class="t">MODULE 531 &middot; ASSET ID ISSUED FOR THE PHYSICAL ITEM</div><div class="vbcode">'+c128svg(c,60)+'</div><div class="c">'+bEsc(c)+'</div></div><div style="margin-top:6px"><button class="small" type="button" onclick="vbScan(\'b_tagscan\',\''+bEsc(c)+'\')">Scan the tag back into the form</button></div>'}
+benchPrint=function(fid){bSet("printed:"+fid,(bGet("printed:"+fid)||0)+1);vbRenderLabel();var bs=$("benchStatus");if(bs){bs.textContent="Label printed to the virtual bench — scan it back from the screen.";bs.style.color="var(--ok)"}};
+document.addEventListener("DOMContentLoaded",function(){var v=$("vb_ser");if(v)v.innerHTML=c128svg("R640-ATL-58201",60);if(bGet("printed:b_tagid"))vbRenderLabel()});
+</script>
 <!-- ===== Module 531 · Submission module v2.0 =====================================
      Collects every handout question and its response inside this lab tool and
      exports ONE print-to-PDF submission sheet for Canvas grading.
@@ -380,51 +424,51 @@ document.addEventListener("DOMContentLoaded",function(){
      rows stripped from the harvested simulator record.
      ========================================================================= -->
 <style id="lqStyle">
-  #lqCard{background:#132433;border:1px solid #2c4a63;border-radius:9px;
-    padding:18px 20px;margin:16px 0 40px;color:#dfeaf3;
+  #lqCard{background:#ffffff;border:1px solid #b9c7d4;border-radius:9px;
+    padding:18px 20px;margin:16px 0 40px;color:#14212b;
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
-  #lqCard h2{font-size:15px;margin:0 0 4px;font-weight:700;color:#dfeaf3}
-  #lqCard .lqsub{color:#a8c0d3;font-size:13px;line-height:1.5;margin:0 0 16px}
+  #lqCard h2{font-size:15px;margin:0 0 4px;font-weight:700;color:#14212b}
+  #lqCard .lqsub{color:#33475a;font-size:13px;line-height:1.5;margin:0 0 16px}
   #lqCard .lqid{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px;
-    padding-bottom:16px;border-bottom:1px solid #2c4a63}
+    padding-bottom:16px;border-bottom:1px solid #b9c7d4}
   #lqCard .lqfld{display:flex;flex-direction:column;gap:5px}
   #lqCard .lqfld label{font-size:10px;letter-spacing:1.1px;text-transform:uppercase;
-    color:#9db6c9;font-weight:700}
+    color:#4a5f72;font-weight:700}
   #lqCard input[type=text],#lqCard textarea{font-family:inherit;font-size:13px;
-    background:#0f1d29;color:#dfeaf3;border:1px solid #2c4a63;border-radius:5px;padding:7px 9px}
+    background:#f4f7fa;color:#14212b;border:1px solid #b9c7d4;border-radius:5px;padding:7px 9px}
   #lqCard textarea{width:100%;resize:vertical;line-height:1.45}
   #lqCard h3.lqsec{font-size:10px;letter-spacing:1.2px;text-transform:uppercase;
-    color:#4fb3ef;font-weight:700;margin:22px 0 10px;padding-top:14px;border-top:1px solid #2c4a63}
+    color:#0b63a5;font-weight:700;margin:22px 0 10px;padding-top:14px;border-top:1px solid #b9c7d4}
   #lqCard h3.lqsec:first-of-type{border-top:0;padding-top:0}
   #lqCard .lqq{margin-bottom:16px}
-  #lqCard .lqq .lqp{display:block;font-size:13px;line-height:1.55;color:#dfeaf3;margin:0 0 7px;
+  #lqCard .lqq .lqp{display:block;font-size:13px;line-height:1.55;color:#14212b;margin:0 0 7px;
     cursor:pointer}
-  #lqCard .lqq .lqp .qn{color:#4fb3ef;font-family:"SFMono-Regular",Consolas,monospace;
+  #lqCard .lqq .lqp .qn{color:#0b63a5;font-family:"SFMono-Regular",Consolas,monospace;
     margin-right:6px;font-weight:700}
   #lqCard .lqbtns{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-top:20px}
   #lqCard button{font-family:inherit;font-size:13px;cursor:pointer;border-radius:5px;
-    border:1px solid #2c4a63;background:#132433;color:#dfeaf3;padding:8px 14px}
-  #lqCard button:hover{background:#20384f;border-color:#3d6485}
+    border:1px solid #b9c7d4;background:#ffffff;color:#14212b;padding:8px 14px}
+  #lqCard button:hover{background:#e4ebf2;border-color:#8fa8bf}
   #lqCard button.lqprimary{background:#0079C0;border-color:#0079C0;color:#fff;font-weight:600}
-  #lqCard button.lqprimary:hover{background:#0a8bd8}
-  #lqCard .lqnote{font-size:12px;color:#9db6c9}
+  #lqCard button.lqprimary:hover{background:#0669a8}
+  #lqCard .lqnote{font-size:12px;color:#4a5f72}
   #lqCard .lqimgwrap{margin-top:7px}
-  #lqCard .lqimgwrap img{max-width:100%;max-height:320px;border:1px solid #2c4a63;
+  #lqCard .lqimgwrap img{max-width:100%;max-height:320px;border:1px solid #b9c7d4;
     border-radius:5px;display:block;margin-top:8px}
-  #lqCard input[type=file]{font-size:12px;color:#a8c0d3}
-  #lqCard .lqfilelbl{display:block;font-size:12px;color:#9db6c9;margin-bottom:4px}
+  #lqCard input[type=file]{font-size:12px;color:#33475a}
+  #lqCard .lqfilelbl{display:block;font-size:12px;color:#4a5f72;margin-bottom:4px}
 
   /* authored focus — the simulators author none, so this is the only visible ring.
      Deliberately global rather than scoped to #lqCard: a keyboard learner needs it
      in the simulator above as much as in the submission panel. */
   a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,
   textarea:focus-visible,summary:focus-visible,[tabindex]:focus-visible{
-    outline:2px solid #4fb3ef;outline-offset:2px;border-radius:3px}
+    outline:2px solid #0b63a5;outline-offset:2px;border-radius:3px}
   @media print{ :focus-visible{outline:none!important} }
 
   /* error banner for a storage failure the learner must know about */
-  #lqStoreErr{display:none;background:#3a1c17;border:1px solid #8a3b2f;border-left:3px solid #e8604c;
-    border-radius:7px;padding:12px 14px;margin:14px 0;font-size:12.5px;line-height:1.55;color:#ffd9d3}
+  #lqStoreErr{display:none;background:#fde3df;border:1px solid #e39a90;border-left:3px solid #b42318;
+    border-radius:7px;padding:12px 14px;margin:14px 0;font-size:12.5px;line-height:1.55;color:#8f1d12}
   #lqStoreErr b{color:#fff}
 
   /* screen-reader-only live region */
@@ -432,25 +476,25 @@ document.addEventListener("DOMContentLoaded",function(){
     clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
 
   /* ---- the assembled submission sheet ---- */
-  .lqsheet{background:#0f1d29;border:1px solid #2c4a63;border-radius:9px;padding:22px 24px;margin-top:18px}
-  .lqsheet h1{font-size:17px;margin:0 0 3px;font-weight:700;color:#dfeaf3}
-  .lqsheet .lqmeta{font-size:12px;color:#9db6c9;margin-bottom:16px}
-  .lqsheet h2{font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:#4fb3ef;
-    font-weight:700;margin:20px 0 8px;padding-bottom:5px;border-bottom:1px solid #2c4a63}
-  .lqsheet .lqrow{display:flex;gap:16px;padding:5px 0;border-bottom:1px solid #22384c;font-size:12.5px}
-  .lqsheet .lqrow .k{color:#9db6c9;flex:0 0 34%}
+  .lqsheet{background:#f4f7fa;border:1px solid #b9c7d4;border-radius:9px;padding:22px 24px;margin-top:18px}
+  .lqsheet h1{font-size:17px;margin:0 0 3px;font-weight:700;color:#14212b}
+  .lqsheet .lqmeta{font-size:12px;color:#4a5f72;margin-bottom:16px}
+  .lqsheet h2{font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:#0b63a5;
+    font-weight:700;margin:20px 0 8px;padding-bottom:5px;border-bottom:1px solid #b9c7d4}
+  .lqsheet .lqrow{display:flex;gap:16px;padding:5px 0;border-bottom:1px solid #d5dee7;font-size:12.5px}
+  .lqsheet .lqrow .k{color:#4a5f72;flex:0 0 34%}
   .lqsheet .lqrow .v{flex:1;white-space:pre-wrap}
-  .lqsheet .lqa{margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #22384c}
-  .lqsheet .lqa .q{font-size:12px;color:#a8c0d3;line-height:1.5;margin-bottom:6px}
-  .lqsheet .lqa .q .qn{color:#4fb3ef;margin-right:6px;font-weight:700}
+  .lqsheet .lqa{margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #d5dee7}
+  .lqsheet .lqa .q{font-size:12px;color:#33475a;line-height:1.5;margin-bottom:6px}
+  .lqsheet .lqa .q .qn{color:#0b63a5;margin-right:6px;font-weight:700}
   .lqsheet .lqa .a{font-size:13px;line-height:1.55;white-space:pre-wrap}
-  .lqsheet .lqa .a.blank{color:#ff8877;font-style:italic}
-  .lqsheet .lqa img{max-width:100%;max-height:400px;border:1px solid #2c4a63;border-radius:4px;margin-top:6px}
-  .lqsheet .lqgap{background:#2b2310;border:1px solid #6d5c38;border-radius:7px;
+  .lqsheet .lqa .a.blank{color:#b42318;font-style:italic}
+  .lqsheet .lqa img{max-width:100%;max-height:400px;border:1px solid #b9c7d4;border-radius:4px;margin-top:6px}
+  .lqsheet .lqgap{background:#fff6e0;border:1px solid #d9b46a;border-radius:7px;
     padding:12px 14px;margin:16px 0;font-size:12.5px;line-height:1.6}
-  .lqsheet .lqgap.ok{background:#123a2a;border-color:#1d5b41}
-  .lqsheet .lqsign{margin-top:22px;padding-top:14px;border-top:1px solid #2c4a63;
-    font-size:12px;color:#a8c0d3;line-height:1.9}
+  .lqsheet .lqgap.ok{background:#dff5e8;border-color:#6fc79a}
+  .lqsheet .lqsign{margin-top:22px;padding-top:14px;border-top:1px solid #b9c7d4;
+    font-size:12px;color:#33475a;line-height:1.9}
 
   #lqPrint{display:none}
   #lqPrint .lqpage{width:100%;border-collapse:collapse}
@@ -505,6 +549,8 @@ document.addEventListener("DOMContentLoaded",function(){
   }
 </style>
 <script id="lqScript">
+function lqStep(i){var it=window.LQ&&LQ.items&&LQ.items[i];var m=it&&/^Step (\d+)\./.exec(it.p||"");return m?"Step "+m[1]:"Q"+(i+1)}
+function lqPrompt(p){return String(p||"").replace(/^Step \d+\.\s*/,"")}
 (function(){
   if(window.__lqLoaded) return; window.__lqLoaded=true;
 
@@ -677,21 +723,21 @@ document.addEventListener("DOMContentLoaded",function(){
   secs.forEach(function(sec,si){
     html+='<h3 class="lqsec" id="lqSec'+si+'">'+esc(sec.name||"Questions")+'</h3>';
     sec.list.forEach(function(o){
-      var id="lqQ"+o.i, n=o.i+1;
+      var id="lqQ"+o.i, n=lqStep(o.i);
       html+='<div class="lqq">';
       if(o.it.k==="image"){
-        html+='<p class="lqp"><span class="qn">Q'+n+'.</span>'+esc(o.it.p)+'</p>'
+        html+='<p class="lqp"><span class="qn">'+n+'</span>'+esc(lqPrompt(o.it.p))+'</p>'
              +'<div class="lqimgwrap">'
-             +'<label class="lqfilelbl" for="'+id+'_f">Attach your image for question '+n+'</label>'
+             +'<label class="lqfilelbl" for="'+id+'_f">Attach your image for '+n+'</label>'
              +'<input type="file" accept="image/*" id="'+id+'_f">'
              +'<p class="lqnote" style="margin:5px 0 0">A photo or screenshot. It is resized and '
-             +'embedded in the PDF you hand in.</p>'
-             +'<img id="'+id+'_img" alt="Your attached image for question '+n+'" style="display:none">'
-             +'<label class="lqfilelbl" for="'+id+'" style="margin-top:8px">Caption or note for question '+n+'</label>'
+             +'embedded in the PDF you hand in. Took it on your phone? Email it to your course mailbox, save it on this PC, then Choose File.</p>'
+             +'<img id="'+id+'_img" alt="Your attached image for '+n+'" style="display:none">'
+             +'<label class="lqfilelbl" for="'+id+'" style="margin-top:8px">Caption or note for '+n+'</label>'
              +'<textarea id="'+id+'" rows="2" placeholder="Add any caption or note that goes with the image.">'
              +esc(store[id]||"")+'</textarea></div>';
       }else{
-        html+='<label class="lqp" for="'+id+'"><span class="qn">Q'+n+'.</span>'+esc(o.it.p)+'</label>'
+        html+='<label class="lqp" for="'+id+'"><span class="qn">'+n+'</span>'+esc(lqPrompt(o.it.p))+'</label>'
              +'<textarea id="'+id+'" rows="3" placeholder="Type your answer here.">'+esc(store[id]||"")+'</textarea>';
       }
       html+='</div>';
@@ -719,14 +765,14 @@ document.addEventListener("DOMContentLoaded",function(){
     var f=document.getElementById(id+"_f");
     if(f) f.onchange=function(){
       var file=f.files&&f.files[0]; if(!file) return;
-      announce("Processing your image for question "+(i+1)+".");
+      announce("Processing your image for "+lqStep(i)+".");
       downscale(file,function(dataUrl,err){
         if(err){ announce(err); alert(err); return; }
         var img=document.getElementById(id+"_img");
         img.src=dataUrl; img.style.display="block";
         store[id+"_img"]=dataUrl;
         var okSave=save();
-        announce("Image attached to question "+(i+1)+
+        announce("Image attached to "+lqStep(i)+
           (okSave?"." : ", but it could not be saved in this browser. Build your PDF now."));
       });
     };
@@ -875,10 +921,10 @@ document.addEventListener("DOMContentLoaded",function(){
     if(rec){ h+='<h2>'+(LQ.nosim?'Bench record':'Simulator and bench record')+'</h2>'+rec; }
     if(!simBuilt){
       gaps.push("The simulator record — work through the lab tool above and press its own "
-               +"“Build submission sheet” button before you build this PDF");
+               +"“Save simulator record” button before you build this PDF");
     }
     if(bo){
-      if(!bo.querySelector(".sheet")) gaps.push("The bench record — press Build bench record in the bench panel");
+      if(!bo.querySelector(".sheet")) gaps.push("The bench record — press Save bench record in the bench panel");
       else{ var bm=bo.querySelector("p.badmark"); if(bm) gaps.push("Bench record: "+bm.textContent.trim().replace(/\.$/,"")); }
     }
     var so=document.getElementById("sheetOut"); if(so){ var sm=so.querySelector("p.badmark"); if(sm) gaps.push("Simulator record: "+sm.textContent.trim().replace(/\.$/,"")); }
@@ -889,9 +935,9 @@ document.addEventListener("DOMContentLoaded",function(){
       var ta=document.getElementById("lqQ"+i);
       var a=ta?ta.value.trim():"";
       var im=store["lqQ"+i+"_img"];
-      if(!a&&!im) gaps.push("Q"+(i+1));
-      h+='<div class="lqa"><div class="q"><span class="qn">Q'+(i+1)+'.</span>'+esc(it.p)+'</div>';
-      if(im) h+='<img src="'+im+'" alt="Attachment for question '+(i+1)+'">';
+      if(!a&&!im) gaps.push(lqStep(i));
+      h+='<div class="lqa"><div class="q"><span class="qn">'+lqStep(i)+'</span>'+esc(lqPrompt(it.p))+'</div>';
+      if(im) h+='<img src="'+im+'" alt="Attachment for '+lqStep(i)+'">';
       h+='<div class="a'+((!a&&!im)?" blank":"")+'">'+(a?esc(a):"— not answered —")+'</div></div>';
     });
 
@@ -908,7 +954,7 @@ document.addEventListener("DOMContentLoaded",function(){
       +'&nbsp;&nbsp;&nbsp;Date: ______________<br>'
       +'Instructor verification: ______________________________'
       +'&nbsp;&nbsp;&nbsp;Date: ______________<br>'
-      +'<span style="font-size:11px">Save this as a PDF and upload the single file to the '
+      +'<span style="font-size:12px">Save this as a PDF and upload the single file to the '
       +esc(LQ.lab)+' assignment in Canvas.</span></div></div>';
 
     document.getElementById("lqOut").innerHTML=h;
@@ -985,5 +1031,124 @@ document.addEventListener("DOMContentLoaded",function(){
 </script>
 <!-- ===== end submission module ============================================= -->
 
+<style id="readability">
+/* ===== v2.3 readability layer — light page, dark screens, AA contrast, 12px floor ===== */
+:root{--bg:#eef2f6;--panel:#ffffff;--panel2:#f4f7fa;--line:#b9c7d4;--line2:#d5dee7;
+--ink:#14212b;--dim:#33475a;--faint:#4a5f72;--acc:#0b63a5;--ok:#15703f;--warn:#8a5a00;--bad:#b42318;
+--blue:#0b63a5;--navy:#0079C0;--ice:#0b3d61;--stop:#b42318;--screen:#0b1620;--screen-line:#2c4a63}
+body{background:var(--bg);color:var(--ink);font-size:15px;line-height:1.5}
+input[type=text],input[type=number],textarea,select{background:#fff;color:var(--ink);border-color:#8fa8bf;font-size:14px}
+::placeholder{color:#5b6f82;opacity:1}
+button{background:#fff;color:var(--ink);border-color:#8fa8bf;font-size:14px}
+button:hover{background:#e4ebf2;border-color:#5b7a95}
+button.primary{background:#0b63a5;border-color:#0b63a5;color:#fff}
+button.primary:hover,button.modeon:hover{background:#0a5590;border-color:#0a5590;color:#fff}
+button:disabled{opacity:.55}
+:focus-visible{outline:3px solid #0b63a5;outline-offset:2px}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #0b63a5;outline-offset:1px}
+*{scrollbar-color:#8fa8bf #eef2f6}
+::-webkit-scrollbar-track{background:#eef2f6}::-webkit-scrollbar-thumb{background:#8fa8bf;border-color:#eef2f6}
+::selection{background:#0b63a5;color:#fff}
+/* the screens: consoles, charts and diagrams keep their dark palette */
+canvas{background:var(--screen);border-radius:6px}
+/* guide card */
+.labguide{background:#fff;border:1px solid #b9c7d4;border-left:5px solid #0b63a5;border-radius:9px;padding:0;margin:0 0 18px;color:#14212b;font-size:15px;line-height:1.55}
+.labguide>summary{cursor:pointer;list-style:none;padding:14px 18px;font-weight:700;font-size:17px;display:flex;align-items:center;gap:10px}
+.labguide>summary::-webkit-details-marker{display:none}
+.labguide>summary::before{content:"▸";display:inline-block;width:14px;color:#0b63a5;transition:transform .15s}
+.labguide[open]>summary::before{transform:rotate(90deg)}
+.labguide>summary .lgsub{font-weight:400;font-size:13px;color:#33475a;margin-left:auto}
+.labguide .lgbody{padding:0 18px 16px}
+.labguide .lggoal{margin:0 0 12px;padding:10px 12px;background:#eef6fc;border-radius:6px;color:#14212b}
+.labguide .lggoal b{color:#0b3d61}
+.labguide ol{margin:0;padding:0 0 0 30px;counter-reset:lg}
+.labguide ol li{margin:0 0 10px;padding-left:4px}
+.labguide ol li::marker{font-weight:700;color:#0b63a5}
+.labguide ol li .lgact{display:block;color:#14212b}
+.labguide ol li .lgres{display:block;color:#33475a;font-size:14px;margin-top:2px;padding-left:12px;border-left:2px solid #d5dee7}
+.labguide .lgdone{margin:14px 0 0;padding:10px 12px;background:#dff5e8;border-radius:6px}
+.labguide .lgdone b{color:#0f5f36}
+.labguide .lgdone ul,.labguide .lgtips ul{margin:6px 0 0;padding-left:20px}
+.labguide .lgdone li,.labguide .lgtips li{margin:3px 0}
+.labguide .lgtips{margin:12px 0 0;font-size:14px;color:#33475a}
+.labguide b,.labguide u{color:inherit}
+.labguide i{font-style:italic}
+@media print{.labguide{display:none}}
+
+/* 531 type floor and contrast */
+.eyebrow{font-size:12px;letter-spacing:1px;color:#33475a}
+header.top h1{font-size:22px}
+.tagrow,.tag{font-size:13px}
+.tag{color:#33475a;border-color:#8fa8bf}
+.tag.set{color:#0b63a5;border-color:#0b63a5}.tag.gate{color:#8a5a00;border-color:#8a5a00}
+#simStatus{font-size:13px;color:#15703f}
+section.brief{font-size:14px;color:#14212b;border-left-color:#0b63a5}
+section.brief h2,.panel>h2,.sheet h3{font-size:13px;letter-spacing:1px;color:#0b3d61}
+.panel h3,.card h4,.card h3.h4{font-size:15px}
+.hint{font-size:13px;color:#4a5f72}
+label,legend,.sheet h4{font-size:12px;letter-spacing:.6px;color:#33475a}
+table.grid,table.grid td{font-size:14px}
+table.grid th,.sheet th{font-size:12px;letter-spacing:.6px;color:#33475a}
+.sheet table,.sheet td{font-size:13.5px}
+.card .meta{font-size:13px;color:#4a5f72}
+.pill{font-size:12px;color:#33475a;border-color:#8fa8bf}
+.chk,.chk label,.chk span.lbl{font-size:14px}
+button.small{font-size:13px}
+#pbar{font-size:13px;background:rgba(238,242,246,.94)}
+#pbar .plab span{color:#4a5f72}
+#pbar .pstep{color:#33475a;border-color:#8fa8bf}
+#pbar .pstep:hover{background:#e4ebf2;border-color:#5b7a95}
+#pbar .pstep .dot{background:#8fa8bf}
+#pbar .pstep.done{color:#0f5f36;border-color:#1a7f4b}#pbar .pstep.done .dot{background:#1a7f4b}
+#pbar .pstep.part{color:#7a4a00;border-color:#8a5a00}#pbar .pstep.part .dot{background:#c98a00}
+.gatetag{font-size:12px;background:#fff1d6;color:#7a4a00;border-color:#d9b46a}
+.gatebox{border-color:#d9b46a;background:#fff9ec}
+#benchPanel{border-color:#7fb0d6;background:linear-gradient(180deg,#eaf3fb 0%,#ffffff 120px)}
+#benchPanel>h2::before{color:#fff;background:#0b63a5;font-size:11px}
+#benchPanel .frow>.f>.meta{font-size:13px}
+.floor{background:#eef2f6}.floor b{font-size:24px}.floor span{font-size:14px;color:#33475a}
+.urow[data-wo] span:last-child{color:#7a4a00}
+input.scanin,input.seqin{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='%230b63a5'%3E%3Crect x='1' y='3' width='2' height='12'/%3E%3Crect x='4' y='3' width='1' height='12'/%3E%3Crect x='6' y='3' width='2' height='12'/%3E%3Crect x='9' y='3' width='1' height='12'/%3E%3Crect x='11' y='3' width='3' height='12'/%3E%3Crect x='15' y='3' width='2' height='12'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:10px center;background-size:18px 18px}
+.scanin:focus,.seqin:focus{background-color:#eef6fc}
+#lqCard{background:#fff;border-color:#b9c7d4;color:#14212b}
+#lqCard h2{color:#14212b;font-size:17px}
+#lqCard .lqsub{color:#33475a;font-size:14px}
+#lqCard .lqid{border-color:#d5dee7}
+#lqCard .lqq .lqp{color:#14212b;font-size:15px}
+#lqCard label,#lqCard .lqfld label{font-size:12px;color:#33475a}
+.okmark{color:#0f5f36}
+#lqCard h3.lqsec,.lqsheet h2{font-size:12.5px;letter-spacing:.8px;color:#0b3d61}
+#lqCard span[style*="font-size:11px"]{font-size:13px !important}
+.urow{font-size:12.5px !important;min-height:26px}.badmark{color:#b42318}.warnmark{color:#7a4a00}
+
+.vbrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.vbprop{min-width:0;background:#fff;border:1px solid #b9c7d4;border-radius:8px;padding:10px 12px;font-size:14px;line-height:1.5}
+.vbprop.wide{grid-column:span 2}
+@media (max-width:640px){.vbprop.wide{grid-column:auto}}
+.vbprop b{display:block;margin-bottom:4px;color:#0b3d61}
+.vbscale{font-family:"SFMono-Regular",Consolas,monospace;font-size:30px;font-weight:700;background:#0b1620;color:#8ef0b6;border-radius:6px;padding:6px 12px;margin:6px 0;display:inline-block}
+.vbscale span{font-size:14px;color:#a8c0d3}
+.vbcode{background:#fff;padding:8px 14px;margin:8px 0;border:1px solid #d5dee7;border-radius:4px;display:block;max-width:100%;overflow:hidden}
+.vbcode svg{display:block;width:398px;height:60px;max-width:100%}   /* natural size: 2 px modules, scannable off an LCD */
+.vbtag{border:1px dashed #8fa8bf;border-radius:6px;padding:8px 10px;text-align:center;background:#fff;display:inline-block}
+.vbtag .t{font-size:11px;letter-spacing:.5px;color:#33475a}.vbtag .c{font-family:"SFMono-Regular",Consolas,monospace;font-weight:700;font-size:15px}
+
+/* automatic type floor */
+.eyebrow{font-size:12px}
+section.brief h2{font-size:12px}
+label{font-size:12px}
+table.grid th{font-size:12px}
+.card .meta{font-size:12px}
+.pill{font-size:12px}
+.sheet h4{font-size:12px}
+.sheet th{font-size:12px}
+legend{font-size:12px}
+#benchPanel>h2::before{font-size:12px}
+.gatetag{font-size:12px}
+#lqCard .lqfld label{font-size:12px}
+#lqCard h3.lqsec{font-size:12px}
+.lqsheet h2{font-size:12px}
+</style>
+<script id="labGuideState">(function(){var d=document.getElementById("labGuide");if(!d)return;try{if(localStorage.getItem("labGuideClosed")==="1")d.open=false;}catch(e){}d.addEventListener("toggle",function(){try{localStorage.setItem("labGuideClosed",d.open?"0":"1")}catch(e){}})})();</script>
 </body>
 </html>
