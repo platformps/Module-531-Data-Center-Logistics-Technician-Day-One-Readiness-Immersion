@@ -50,3 +50,16 @@ Nothing else in any tool changed. Remove the block between the `GS_BRIEF` marker
 The twelve handouts carry the matching change: *Learning Objectives* and a new *Scenario* heading lead the document, in bold on a shaded block between two rules; *Introduction*, *Equipment / Requirements* and *Instructions* follow with their text unchanged.
 
 The change is applied by `build/goals_scenario_patch.py <handouts folder> <tools folder>`. It is re-runnable (a second run changes nothing). Run it last, after any regeneration and after the readability patch, because it anchors on the guide card. `build/test_goals_scenario.py` checks the result.
+
+## v2.5 — a wrong answer says so (30 September 2026)
+
+Class request: when an answer is wrong, make it obvious — a sound, or the word in big letters. Every tool now does both.
+
+When a check in the tool fails — a scan that is not the code the field expects, a tag that fails its scan check, a sequence out of order, a duplicate scan, a request the vendor portal rejects, a lookup that finds nothing — the screen shows **WRONG** in big letters, names the field or panel the answer was in, and says why in a full sentence ("Why: “KIT-SCAN-01” is not the code this field expects. Scan the card or tag named in the field's label, not a different one."). A short buzzer sounds. The box stays up until your next click or key, so there is time to read it.
+
+- **Sound on / Sound off** is the switch in the bottom-left corner of the page. Your choice is remembered in that browser.
+- A record that is only incomplete ("3 item(s) incomplete") is not called wrong, and neither is a reminder to do a step first.
+- The tools check exactly what they checked before. Written answers and judgment calls are still assessed by your instructor.
+- Nothing prints: the submission PDF is unchanged.
+
+The change is applied by `build/wrong_signal_patch.py <tools folder>` (re-runnable; run it after any regeneration). `build/test_wrong_signal.py` checks it.
