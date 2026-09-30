@@ -35,3 +35,18 @@ The change is applied by `build/readability_patch.py` (with the guide text in `g
 ### Virtual bench (v2.3, same day)
 
 The stations have no label printer and no physical kit, so every bench panel now opens on a **Virtual bench** card: the cards, tags, labels and serials the bench expects are on screen as Code 128 barcodes (scan them off the display with the field selected, or press the barcode's Scan button), and **Print label** puts the printed tag on the virtual bench instead of opening a print window. `build/bench_walk.py <folder>` walks every bench as a learner and reports which records complete.
+
+## v2.4 — goals and scenario at the top (30 September 2026)
+
+Review feedback on the labs: keep the detailed instruction and the lab walkthroughs, and move each lab's goals and scenario to the top in bold or contrasting text. Every tool now:
+
+- opens on a **Goals + Scenario band** directly under the lab title and above the *How to work this lab* card — bold white text on navy, always visible, not collapsible. It does not print, so the submission PDF is unchanged.
+- takes that wording from its own handout: the handout's *Learning Objectives* are the goals, and the first paragraph under its scenario heading is the scenario. Edit the handout, re-run the patch, and the tool follows.
+
+The last goal in each lab — the bench goal — is restated for the **virtual bench** (scan from the screen, **Print label** puts the label on the virtual bench), in the handout and in the band alike. GLAB 531.1.3 keeps its walkdown goal, which is still done at the station.
+
+Nothing else in any tool changed. Remove the block between the `GS_BRIEF` markers and each file is exactly its v2.3 version.
+
+The twelve handouts carry the matching change: *Learning Objectives* and a new *Scenario* heading lead the document, in bold on a shaded block between two rules; *Introduction*, *Equipment / Requirements* and *Instructions* follow with their text unchanged.
+
+The change is applied by `build/goals_scenario_patch.py <handouts folder> <tools folder>`. It is re-runnable (a second run changes nothing). Run it last, after any regeneration and after the readability patch, because it anchors on the guide card. `build/test_goals_scenario.py` checks the result.
