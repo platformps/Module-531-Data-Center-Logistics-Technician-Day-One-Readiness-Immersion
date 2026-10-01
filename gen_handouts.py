@@ -18,20 +18,8 @@ HANDOUT_FILES = {
 
 SRC_HANDOUT = {n: HANDOUT_FILES[n].replace(f"531-{n}_", f"531-{o}_") for n, o in SRC_ID.items()}   # a renamed lab's handout in the source package
 
-# Old (v2.0–v2.3) bench objective / kit bullet texts, recognised and dropped when the source is an earlier handout
+# Old (v2.0) bench objective / kit bullet texts, recognised and dropped when the source is a v2.0 handout
 OLD_BULLETS = {
- # v2.2 physical-kit bench objectives, superseded by the virtual-bench wording on 30 Sep 2026 (v2.4)
- "Prove the station works: scan a station card and a scanner card into the lab tool and confirm the ESD kit is present and connected.",
- "Identify real kit items by sight, function and handling requirement at the kit station, scanning each blind card into the tool; then sequence the lifecycle with physical stage cards and map three stages to the kit item each one reaches for first.",
- "Execute three physical hand-offs of a bagged drive with a complete logbook line at each transfer, mirrored into the tool.",
- "Receive a real carton: weigh it against the ASN, verify contents, print the issued asset tag on the label printer, place it per the standard and scan it back.",
- "Pack a failed FRU for return under ESD protection, seal it in a serialized security bag with the serial scanned at sealing, and label the carton with the printed RMA authorization.",
- "Find real kit items by scanning their tags against the bench register and record a physical move at the cart, not the desk.",
- "Perform a physical blind count of a station bin by scanning every tag, lock it, and reconcile against the register quantity.",
- "Read the R640 service tag from the chassis, pack the unit for its path and label it with the printed claim or hold label.",
- "Rack a real R640 into the mobile rack with rails, cage nuts and a team lift, dress it, and record the move at the rack.",
- "Census real drives, double-bag each one in a serialized security bag with the serial scanned at sealing, and log every bag.",
- "Sort real end-of-life items into disposition bins by scan, witness a destruction hand-over and complete the hand-over line.",
  "Identify real kit items by sight, function and handling requirement at the kit station, scanning each blind card into the tool.",
  "Sequence the lifecycle with physical stage cards and map three stages to the kit item each one reaches for first.",
  "The eight lifecycle stage cards and the kit item cards at your station, DS2208 scanner.",
@@ -40,18 +28,18 @@ OLD_BULLETS = {
 }
 
 BENCH_OBJECTIVE = {
- "0-1":"Prove the station works: scan the station card and the scanner card on the virtual bench into the lab tool and complete the ESD kit check.",
- "1-1":"Identify kit items by function and handling requirement on the virtual bench, scanning each kit card into the tool; then sequence the lifecycle by scanning the eight stage cards in order and map three stages to the kit item each one reaches for first.",
- "1-2":"Execute three hand-offs of a bagged drive with your partner on the virtual bench, with a complete custody line at each transfer: drive tag scanned, date and time, from, to, condition and both initials.",
+ "0-1":"Prove the station works: scan a station card and a scanner card into the lab tool and confirm the ESD kit is present and connected.",
+ "1-1":"Identify real kit items by sight, function and handling requirement at the kit station, scanning each blind card into the tool; then sequence the lifecycle with physical stage cards and map three stages to the kit item each one reaches for first.",
+ "1-2":"Execute three physical hand-offs of a bagged drive with a complete logbook line at each transfer, mirrored into the tool.",
  "1-3":"Walk a physically staged route, record the genuine hazards without overcalling, and don task-appropriate PPE with a partner fit check.",
- "2-1":"On the virtual bench, receive a carton: check its scale reading against the ASN, verify the contents, print the issued asset tag with Print label, place it per the standard and scan it back.",
- "2-2":"On the virtual bench, pack a failed FRU for return: ESD protection confirmed, the security-bag serial scanned at the moment of sealing, the RMA label printed and scanned back, and the logbook line complete with both initials.",
- "3-1":"Look up three tagged items by scanning their tags from the virtual bench against the bench register, and record one move by scanning the item at the cart and setting its new location, status and custody.",
- "3-2":"Perform a blind count of a bin on the virtual bench by scanning every tag, lock it, and reconcile against the register quantity.",
- "4-1":"Read the R640's asset tag and Dell service tag from the virtual bench, confirm ESD protection and bagging, then print the claim or hold label for its path and scan it back.",
- "4-2":"On the virtual bench, record the rack-and-stack move: scan the unit's asset tag, the rail-kit card and the U-position label, confirm each racking check in order, and log your team-lift partner's initials.",
- "5-1":"Census the drives in the chassis on the virtual bench, bag each one in a serialized security bag with the serial scanned at sealing, and log every bag with both initials.",
- "5-2":"Sort three end-of-life items into disposition bins by scan on the virtual bench, witness the destruction hand-over and complete the hand-over line.",
+ "2-1":"Receive a real carton: weigh it against the ASN, verify contents, print the issued asset tag on the label printer, place it per the standard and scan it back.",
+ "2-2":"Pack a failed FRU for return under ESD protection, seal it in a serialized security bag with the serial scanned at sealing, and label the carton with the printed RMA authorization.",
+ "3-1":"Find real kit items by scanning their tags against the bench register and record a physical move at the cart, not the desk.",
+ "3-2":"Perform a physical blind count of a station bin by scanning every tag, lock it, and reconcile against the register quantity.",
+ "4-1":"Read the R640 service tag from the chassis, pack the unit for its path and label it with the printed claim or hold label.",
+ "4-2":"Rack a real R640 into the mobile rack with rails, cage nuts and a team lift, dress it, and record the move at the rack.",
+ "5-1":"Census real drives, double-bag each one in a serialized security bag with the serial scanned at sealing, and log every bag.",
+ "5-2":"Sort real end-of-life items into disposition bins by scan, witness a destruction hand-over and complete the hand-over line.",
 }
 KIT_BULLETS = {
  "0-1":["Your station kit: DS2208 barcode scanner (USB), ESD mat and wrist strap, the station card and the scanner card taped at the bench."],
@@ -92,7 +80,7 @@ def parse(path, strip=False):
             if st == "List Paragraph" and txt in old_kit: continue
             txt = re.sub(r" The last \d+ minutes are at the bench \(Part \d+\)\.", "", txt)
             txt = re.sub(r" The bench record \(Part \d+\) is completed during the move, at the rack\.", "", txt)
-            txt = re.sub(r" The bench panel inside the tool records the physical part of the lab the same way - scan into it, tick only what is true, and press (Build|Save) bench record\.", "", txt)
+            txt = txt.replace(" The bench panel inside the tool records the physical part of the lab the same way - scan into it, tick only what is true, and press Build bench record.", "")
             txt = subst(txt)
         if st == "Heading 1": out.append(("h1", txt))
         elif st == "Heading 2": out.append(("h2", txt))
@@ -110,7 +98,7 @@ def build(lid):
     ctitle, items = parse(src, strip=(os.environ.get("SRC_HAS_BENCH", "1") == "1"))
     files = tool_files_label(lid)
     # count existing questions + steps
-    nq = sum(1 for k, t in items if k == "arrow" and ("Answer this" in t or "Attach your image" in t))
+    nq = sum(1 for k, t in items if k == "arrow" and ("Answer this as Q" in t or "Attach your image as Q" in t))
     nsteps = max(int(m.group(1)) for k, t in items if k == "body" for m in [re.match(r"Step (\d+)\.", t)] if m)
     # bench steps must continue numbering
     for i, st in enumerate(L["steps"]):
@@ -133,7 +121,7 @@ def build(lid):
             if section == "Equipment / Requirements" and "Lab tool:" in t:
                 t = t.replace("opened in a browser.", "opened in a browser at your station.")
             D.bullet(t)
-        elif k == "arrow": D.arrow(re.sub(r"^(Answer this|Attach your image) as Q\d+ in", r"\1 in", t))   # v2.2: the tool labels answers by step, not Q
+        elif k == "arrow": D.arrow(t)
         elif k == "body":
             m = re.search(r"You have (\d+) minutes", t)
             if m:
@@ -141,7 +129,7 @@ def build(lid):
                        else f" The bench record ({L['part'].split(':')[0]}) is completed during the move, at the rack.")
                 t = t.replace(m.group(0), f"You have {L['minutes']} minutes") + add
             if t.startswith("Recording your answers."):
-                t += " The bench panel inside the tool records the physical part of the lab the same way - scan into it, tick only what is true, and press Save bench record."
+                t += " The bench panel inside the tool records the physical part of the lab the same way - scan into it, tick only what is true, and press Build bench record."
             D.body(t)
     # the bench objective is inserted by the post-pass below
     # ---- append the bench part
@@ -151,8 +139,8 @@ def build(lid):
     for st in L["steps"]:
         D.body(st["t"])
         if st["cap"] == "rec": D.arrow("Recorded in the lab tool as you work.")
-        elif st["cap"] == "text": q += 1; D.arrow(f"Answer this in the lab tool ({files}).")
-        elif st["cap"] == "image": q += 1; D.arrow(f"Attach your image in the lab tool ({files}).")
+        elif st["cap"] == "text": q += 1; D.arrow(f"Answer this as Q{q} in the lab tool ({files}).")
+        elif st["cap"] == "image": q += 1; D.arrow(f"Attach your image as Q{q} in the lab tool ({files}).")
     # insert the bench objective: find the Learning Objectives heading and append after its last bullet
     body = D.d.element.body
     paras = list(D.d.paragraphs)

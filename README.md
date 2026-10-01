@@ -63,3 +63,31 @@ When a check in the tool fails — a scan that is not the code the field expects
 - Nothing prints: the submission PDF is unchanged.
 
 The change is applied by `build/wrong_signal_patch.py <tools folder>` (re-runnable; run it after any regeneration). `build/test_wrong_signal.py` checks it.
+
+## v2.6 — GLAB 531.5.1: five drives on the bench (30 September 2026)
+
+The Secure Decommission bench (`531-5-1-A / B / C`) now has **five drive boxes** instead of three, and the virtual bench shows **five drives** (DBD-01 to DBD-05) and **five security bags** (TEB-40301 to TEB-40305).
+
+- Drive 4 and Drive 5 work exactly like the first three: scan the drive tag, scan the bag serial as you seal, type both initials.
+- Boxes 3, 4 and 5 read *leave blank if the chassis holds fewer drives*. The tool does not tell you how many drives to expect — count what is on the bench.
+- The last question (Step 13) now asks what you did with "the extra drives".
+
+The change is applied by `build/decom_five_drives_patch.py <tools folder> <handouts folder>` (re-runnable). `build/test_decom_five.py` checks it.
+
+## v2.7 — short instructions (1 October 2026)
+
+Learner feedback: the goals and scenario are easy to spot, but the instructions under them were wordy. The long "How to work this lab" card is now a short **Steps for this lab** card, about a fifth of the reading (a third in GLAB 531.1.1, which also teaches the routine).
+
+- **One line per step.** Each step says what to do and where. Press **More** on a step for the full explanation of that step, including what you should see when it works.
+- **The routine is taught once.** Saving your records, answering the questions and building the PDF are the same in every lab, so GLAB 531.1.1 spells that routine out under **Start here**, with one worked example. Every other lab has one line for it at the foot of the card.
+- **Nothing was thrown away.** **Full instructions** at the foot of the card opens the complete earlier card: every step in full, what you hand in, the finish checklist and the tips.
+- A collapsed card stays collapsed in that lab. The card does not print: the submission PDF is unchanged.
+- The two graded-gate labs (531.2.2, 531.5.1) keep their gate warning in plain view at the top of the card.
+- While the steps were being shortened, every one was walked against the live tool, and the earlier wording was corrected where it did not match (for example 531.1.2 set B has six events, not seven; in 531.2.2 you add the carrier and vendor custody entries yourself after **Advance time**; in 531.5.1 Parts 2 and 3 open only after PROCEED).
+
+Two bench fixes came with it:
+
+- **GLAB 531.2.1:** the item label's **Scan** button now enters the serial into *Serial from the item's own label*. Typing it still works.
+- **Bag serials:** a security-bag box (531.2.2, 531.5.1) takes only a bag serial (TEB-…), and the vendor transfer-bag box (531.5.2) only its VTB-… serial. A drive tag or any other code scanned there is refused, and the WRONG box says why.
+
+The changes are applied by `build/short_guide_patch.py <tools folder>` and `build/bench_fixes_patch.py <tools folder>` (re-runnable, in any order with the other patches; run them after any regeneration). `build/test_short_guide.py` and `build/test_bench_fixes.py` check them: each takes the folder of tools before its patch and the folder after.
